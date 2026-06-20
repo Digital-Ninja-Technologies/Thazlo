@@ -1,0 +1,172 @@
+---
+import { cn } from "@/lib/utils"
+import { Menu, X } from "@lucide/astro"
+import NavActions from "@/components/ui/nav-actions.astro"
+import Logo from "@/components/global/Logo.astro"
+
+import { siteConfig } from "@/config/site"
+
+const navLinks = siteConfig.mainNav
+
+const normalizePath = (path: string) => {
+  if (path === "/") return "/"
+  return path.replace(/\/+$/, "")
+}
+
+const pathname = normalizePath(Astro.url.pathname)
+
+const isActive = (href: string) => {
+  const target = normalizePath(href)
+  if (target === "/") return pathname === "/"
+  return pathname === target || pathname.startsWith(`${target}/`)
+}
+
+const navLinkClass = (active: boolean) =>
+  cn(
+    "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors outline-none before:absolute before:-bottom-1 before:left-1/2 before:size-2 before:-translate-x-1/2 before:rounded-full before:bg-transparent before:content-[''] focus-visible:ring-2 focus-visible:ring-ring",
+    active
+      ? " text-primary before:bg-primary"
+      : "text-muted-foreground hover:bg-secondary/20 hover:text-primary"
+  )
+---
+
+<div class="fixed inset-x-0 top-4 z-50 flex justify-center px-4 sm:px-6">
+  <header
+    id="t-hazlo-navbar"
+    data-scrolled="false"
+    class="w-full max-w-7xl rounded-full border border-transparent bg-transparent py-2 transition-all duration-300 ease-out data-[scrolled=true]:max-w-5xl data-[scrolled=true]:border-border/40 data-[scrolled=true]:bg-background/80 data-[scrolled=true]:shadow-lg data-[scrolled=true]:backdrop-blur-xl"
+  >
+    <div class="flex h-14 items-center justify-between px-4 sm:px-6">
+      {/* Brand Logo */}
+      <Logo />
+
+      {/* Desktop Navigation */}
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
+        {
+          navLinks.map((link) => {
+            const active = isActive(link.href)
+            return (
+              <a
+                href={link.href}
+                class={navLinkClass(active)}
+                aria-current={active ? "page" : undefined}
+              >
+                {link.name}
+              </a>
+            )
+          })
+        }
+      </nav>
+
+      {/* Desktop Actions */}
+      <div class="hidden items-center gap-3 md:flex">
+        <NavActions />
+      </div>
+
+      {/* Mobile Toggle */}
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        class="inline-flex size-10 items-center justify-center rounded-full text-foreground transition-colors outline-none hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring md:hidden"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <Menu id="menu-icon-open" class="size-5 transition-transform" />
+        <X id="menu-icon-close" class="hidden size-5 transition-transform" />
+      </button>
+    </div>
+  </header>
+</div>
+
+{/* Mobile Menu Overlay */}
+<div
+  id="mobile-menu"
+  data-open="false"
+  class="fixed inset-x-4 top-24 z-40 hidden max-h-[calc(100vh-8rem)] flex-col gap-4 overflow-hidden rounded-3xl border border-border/50 bg-background/95 p-6 shadow-2xl backdrop-blur-2xl transition-all duration-300 ease-in-out data-[open=true]:flex md:hidden"
+>
+  <nav class="flex flex-col gap-2">
+    {
+      navLinks.map((link) => {
+        const active = isActive(link.href)
+        return (
+          <a
+            href={link.href}
+            aria-current={active ? "page" : undefined}
+            class={cn(
+              "flex w-full items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-colors",
+              active
+                ? "bg-primary/10 text-primary"
+                : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+            )}
+          >
+            {link.name}
+          </a>
+        )
+      })
+    }
+  </nav>
+
+  <hr class="border-border/50" />
+
+  <div class="grid grid-cols-2 gap-3">
+    <NavActions />
+  </div>
+</div>
+
+<script>
+  // Native Vanilla JS. Zero dependencies. Zero layout thrashing.
+  const navbar = document.getElementById("t-hazlo-navbar")
+  const mobileBtn = document.getElementById("mobile-menu-btn")
+  const mobileMenu = document.getElementById("mobile-menu")
+  const iconOpen = document.getElementById("menu-icon-open")
+  const iconClose = document.getElementById("menu-icon-close")
+
+  // Passive scroll listener for the shrink effect
+  const handleScroll = () => {
+    if (!navbar) return
+    const isScrolled = window.scrollY > 20
+    if (navbar.dataset.scrolled === String(isScrolled)) return // Prevent unnecessary DOM writes
+    navbar.dataset.scrolled = String(isScrolled)
+  }
+
+  window.addEventListener("scroll", handleScroll, { passive: true })
+  handleScroll() // Initialize on load
+
+  // Mobile menu toggle logic
+  const toggleMenu = () => {
+    if (!mobileMenu || !mobileBtn) return
+
+    const isOpen = mobileMenu.dataset.open === "true"
+    const newState = String(!isOpen)
+
+    mobileMenu.dataset.open = newState
+    mobileBtn.setAttribute("aria-expanded", newState)
+
+    // Toggle body scroll
+    document.body.style.overflow = isOpen ? "" : "hidden"
+
+    // Toggle icons
+    iconOpen?.classList.toggle("hidden")
+    iconClose?.classList.toggle("hidden")
+  }
+
+  mobileBtn?.addEventListener("click", toggleMenu)
+
+  // Close menu when clicking links
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileMenu.dataset.open === "true") toggleMenu()
+    })
+  })
+
+  // Cleanup on desktop resize
+  window.addEventListener(
+    "resize",
+    () => {
+      if (window.innerWidth >= 768 && mobileMenu?.dataset.open === "true") {
+        toggleMenu()
+      }
+    },
+    { passive: true }
+  )
+</script>

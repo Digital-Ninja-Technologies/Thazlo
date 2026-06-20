@@ -1,0 +1,22 @@
+---
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { ChevronRight } from "@lucide/astro"
+---
+
+<a href="/careers" class={buttonVariants({ variant: "outline", size: "lg" })}>
+  Join Vendors
+</a>
+<a
+  href="/contact"
+  class={cn(
+    buttonVariants({
+      size: "lg",
+      animate: "slide"
+    }),
+    "shadow-lg shadow-primary/20"
+  )}
+>
+  Get In Touch
+  <ChevronRight />
+</a>
