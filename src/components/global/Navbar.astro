@@ -23,9 +23,9 @@ const isActive = (href: string) => {
 
 const navLinkClass = (active: boolean) =>
   cn(
-    "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors outline-none before:absolute before:-bottom-1 before:left-1/2 before:size-2 before:-translate-x-1/2 before:rounded-full before:bg-transparent before:content-[''] focus-visible:ring-2 focus-visible:ring-ring",
+    "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors outline-none before:absolute before:-bottom-1 before:left-1/2 before:hidden before:size-2 before:-translate-x-1/2 before:rounded-full before:content-[''] focus-visible:ring-2 focus-visible:ring-ring",
     active
-      ? " text-primary before:bg-primary"
+      ? "bg-secondary/50 text-primary"
       : "text-muted-foreground hover:bg-secondary/20 hover:text-primary"
   )
 ---
@@ -41,7 +41,10 @@ const navLinkClass = (active: boolean) =>
       <Logo />
 
       {/* Desktop Navigation */}
-      <nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
+      <nav
+        class="hidden items-center gap-1 rounded-full bg-secondary/10 shadow-xs border p-1 md:flex"
+        aria-label="Primary"
+      >
         {
           navLinks.map((link) => {
             const active = isActive(link.href)

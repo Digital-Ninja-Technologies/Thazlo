@@ -23,12 +23,18 @@ const socialLinks = Object.entries(siteConfig.socials).map(
     Icon: socialIcons[platform as keyof typeof socialIcons],
   })
 )
+
+const contactDetails = siteConfig.contact
+
+const LocationIcon = contactDetails.location.icon
+const EmailIcon = contactDetails.emails[0].icon
+const PhoneIcon = contactDetails.phone.icon
 ---
 
 <footer class="mt-auto border-t border-border/40 bg-background pt-16 pb-8">
   <div class="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
     {/* MAIN FOOTER LINKS */}
-    <div class="mb-16 grid grid-cols-2 gap-10 md:grid-cols-4 lg:grid-cols-6">
+    <div class="mb-16 grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-7">
       {/* Column 1: Brand & Bio */}
       <div class="col-span-2 lg:col-span-2">
         <div class="mb-4">
@@ -48,7 +54,7 @@ const socialLinks = Object.entries(siteConfig.socials).map(
                 target="_blank"
                 rel="noopener noreferrer"
                 class="rounded-full border border-border/50 bg-secondary p-2 text-muted-foreground transition-all duration-300 outline-none hover:scale-110 hover:bg-primary/10 hover:text-primary focus-visible:ring-2 focus-visible:ring-ring"
-                aria-label={`Follow Ventix on ${platform}`}
+                aria-label={`Follow T Hazlo on ${platform}`}
               >
                 <Icon class="size-5" />
               </a>
@@ -62,10 +68,7 @@ const socialLinks = Object.entries(siteConfig.socials).map(
           <FooterCol title={section.title}>
             {section.links.map((link) => (
               <li>
-                <a
-                  href={link.href}
-                  class="group flex w-fit items-center gap-2 rounded-sm text-muted-foreground transition-colors outline-none hover:text-primary focus-visible:ring-2 focus-visible:ring-ring"
-                >
+                <a href={link.href} class="group link w-fit">
                   <span class="h-px w-0 bg-primary transition-all duration-300 group-hover:w-3" />
                   {link.name}
                 </a>
@@ -74,11 +77,36 @@ const socialLinks = Object.entries(siteConfig.socials).map(
           </FooterCol>
         ))
       }
-      <FooterCol title="Get in Touch">
-        {
-          // <li>  </li>
-        }
-      </FooterCol>
+
+      <div class="col-span-2">
+        <FooterCol title="Get in Touch">
+          <li>
+            {/* TODO: update with actual location url */}
+            <a href={contactDetails.location.value} class="group link gap-3">
+              <LocationIcon class="size-5 group-hover:text-primary" />
+              {contactDetails.location.value}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`mailto:${contactDetails.emails[0].value}`}
+              class="group link gap-3"
+            >
+              <EmailIcon class="size-5 group-hover:text-primary" />
+              {contactDetails.emails[0].value}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`tel:${contactDetails.phone.value}`}
+              class="group link gap-3"
+            >
+              <PhoneIcon class="size-5 group-hover:text-primary" />
+              {contactDetails.phone.value}
+            </a>
+          </li>
+        </FooterCol>
+      </div>
     </div>
 
     {/* BOTTOM BAR */}
