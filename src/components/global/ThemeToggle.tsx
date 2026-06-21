@@ -43,7 +43,7 @@ export function ThemeToggle() {
     <div
       role="radiogroup"
       aria-label="Theme selection"
-      className="inline-flex h-9 items-center rounded-full border border-border/50 bg-secondary/50 p-1"
+      className="inline-flex h-9 items-center rounded-full border border-white/20 bg-white/10 p-1"
     >
       <button
         role="radio"
@@ -51,10 +51,10 @@ export function ThemeToggle() {
         aria-label="Light mode"
         onClick={() => setTheme("light")}
         className={cn(
-          "flex size-7 items-center justify-center rounded-full transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary",
+          "flex size-7 items-center justify-center rounded-full transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white",
           theme === "light"
-            ? "bg-background text-foreground shadow-sm"
-            : "text-muted-foreground hover:text-foreground"
+            ? "bg-white text-primary shadow-sm"
+            : "text-white/60 hover:text-white"
         )}
       >
         <Sun className="size-4" />
@@ -66,10 +66,10 @@ export function ThemeToggle() {
         aria-label="System mode"
         onClick={() => setTheme("system")}
         className={cn(
-          "flex size-7 items-center justify-center rounded-full transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary",
+          "flex size-7 items-center justify-center rounded-full transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white",
           theme === "system"
-            ? "bg-background text-foreground shadow-sm"
-            : "text-muted-foreground hover:text-foreground"
+            ? "bg-white text-primary shadow-sm"
+            : "text-white/60 hover:text-white"
         )}
       >
         <Laptop className="size-4" />
@@ -81,10 +81,10 @@ export function ThemeToggle() {
         aria-label="Dark mode"
         onClick={() => setTheme("dark")}
         className={cn(
-          "flex size-7 items-center justify-center rounded-full transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary",
+          "flex size-7 items-center justify-center rounded-full transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white",
           theme === "dark"
-            ? "bg-background text-foreground shadow-sm"
-            : "text-muted-foreground hover:text-foreground"
+            ? "bg-white text-primary shadow-sm"
+            : "text-white/60 hover:text-white"
         )}
       >
         <Moon className="size-4" />

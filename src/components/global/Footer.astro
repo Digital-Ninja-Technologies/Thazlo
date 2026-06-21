@@ -31,18 +31,24 @@ const EmailIcon = contactDetails.emails[0].icon
 const PhoneIcon = contactDetails.phone.icon
 ---
 
-<footer class="mt-auto border-t border-border/40 bg-background pt-16 pb-8">
+<footer
+  class="mt-auto border-t border-primary bg-primary pt-16 pb-8 text-white"
+>
   <div class="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
     {/* MAIN FOOTER LINKS */}
     <div class="mb-16 grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-7">
-      {/* Column 1: Brand & Bio */}
+      {/* Brand & Bio */}
       <div class="col-span-2 lg:col-span-2">
         <div class="mb-4">
-          <!-- <Logo variant="full" className="flex-col" iconClass="invert brightness-0" /> -->
-          <Logo variant="full" />
+          <Logo
+            variant="full"
+            className="flex-col items-center gap-2 text-white"
+            iconClass="brightness-0 invert"
+          />
         </div>
-        <p class="mb-6 max-w-sm leading-relaxed text-muted-foreground">
-          {siteConfig.description}
+
+        <p class="mb-6 max-w-sm leading-relaxed text-white/80">
+          Essentials Services, One tap away
         </p>
 
         {/* Social Icons */}
@@ -53,7 +59,7 @@ const PhoneIcon = contactDetails.phone.icon
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="rounded-full border border-border/50 bg-secondary p-2 text-muted-foreground transition-all duration-300 outline-none hover:scale-110 hover:bg-primary/10 hover:text-primary focus-visible:ring-2 focus-visible:ring-ring"
+                class="rounded-full border border-white/20 bg-white/5 p-2 text-white/80 transition-all duration-300 outline-none hover:scale-110 hover:bg-white/20 hover:text-white focus-visible:ring-2 focus-visible:ring-white"
                 aria-label={`Follow T Hazlo on ${platform}`}
               >
                 <Icon class="size-5" />
@@ -68,8 +74,11 @@ const PhoneIcon = contactDetails.phone.icon
           <FooterCol title={section.title}>
             {section.links.map((link) => (
               <li>
-                <a href={link.href} class="group link w-fit">
-                  <span class="h-px w-0 bg-primary transition-all duration-300 group-hover:w-3" />
+                <a
+                  href={link.href}
+                  class="group link w-fit text-white/80 hover:text-white"
+                >
+                  <span class="h-px w-0 bg-white transition-all duration-300 group-hover:w-3" />
                   {link.name}
                 </a>
               </li>
@@ -79,29 +88,38 @@ const PhoneIcon = contactDetails.phone.icon
       }
 
       <div class="col-span-2">
-        <FooterCol title="Get in Touch">
+        <FooterCol title="Get in Touch" class="text-white">
           <li>
             {/* TODO: update with actual location url */}
-            <a href={contactDetails.location.value} class="group link gap-3">
-              <LocationIcon class="size-5 group-hover:text-primary" />
+            <a
+              href={contactDetails.location.value}
+              class="group link gap-3 text-white/80 hover:text-white"
+            >
+              <LocationIcon
+                class="size-5 transition-colors group-hover:text-white"
+              />
               {contactDetails.location.value}
             </a>
           </li>
           <li>
             <a
               href={`mailto:${contactDetails.emails[0].value}`}
-              class="group link gap-3"
+              class="group link gap-3 text-white/80 hover:text-white"
             >
-              <EmailIcon class="size-5 group-hover:text-primary" />
+              <EmailIcon
+                class="size-5 transition-colors group-hover:text-white"
+              />
               {contactDetails.emails[0].value}
             </a>
           </li>
           <li>
             <a
               href={`tel:${contactDetails.phone.value}`}
-              class="group link gap-3"
+              class="group link gap-3 text-white/80 hover:text-white"
             >
-              <PhoneIcon class="size-5 group-hover:text-primary" />
+              <PhoneIcon
+                class="size-5 transition-colors group-hover:text-white"
+              />
               {contactDetails.phone.value}
             </a>
           </li>
@@ -111,14 +129,14 @@ const PhoneIcon = contactDetails.phone.icon
 
     {/* BOTTOM BAR */}
     <div
-      class="flex flex-col items-center justify-between gap-4 border-t border-border/40 pt-8 text-sm text-muted-foreground md:flex-row"
+      class="flex flex-col items-center justify-between gap-4 border-t border-white/20 pt-8 text-sm text-white/80 md:flex-row"
     >
       <p>&copy; {currentYear} {siteConfig.name} Inc. All rights reserved.</p>
 
       <ThemeToggle client:only="react">
         <div
           slot="fallback"
-          class="h-9 w-26 animate-pulse rounded-full border border-border/50 bg-secondary/50"
+          class="h-9 w-24 animate-pulse rounded-full border border-white/20 bg-white/10"
         >
         </div>
       </ThemeToggle>
