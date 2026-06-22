@@ -171,10 +171,6 @@
     @apply max-w-prose text-lg leading-relaxed text-muted-foreground md:text-xl;
   }
 
-  /*.link {
-    @apply flex items-center gap-2 rounded-sm text-muted-foreground transition-colors outline-none hover:text-primary focus-visible:ring-2 focus-visible:ring-ring;
-  }*/
-
   .link {
     @apply flex items-center gap-2 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-white w-fit text-white/80 transition-colors hover:text-white
   }

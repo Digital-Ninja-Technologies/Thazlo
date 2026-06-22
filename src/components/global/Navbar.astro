@@ -117,23 +117,21 @@ const navLinkClass = (active: boolean) =>
 </div>
 
 <script>
-  // Native Vanilla JS. Zero dependencies. Zero layout thrashing.
   const navbar = document.getElementById("t-hazlo-navbar")
   const mobileBtn = document.getElementById("mobile-menu-btn")
   const mobileMenu = document.getElementById("mobile-menu")
   const iconOpen = document.getElementById("menu-icon-open")
   const iconClose = document.getElementById("menu-icon-close")
 
-  // Passive scroll listener for the shrink effect
   const handleScroll = () => {
     if (!navbar) return
     const isScrolled = window.scrollY > 20
-    if (navbar.dataset.scrolled === String(isScrolled)) return // Prevent unnecessary DOM writes
+    if (navbar.dataset.scrolled === String(isScrolled)) return
     navbar.dataset.scrolled = String(isScrolled)
   }
 
   window.addEventListener("scroll", handleScroll, { passive: true })
-  handleScroll() // Initialize on load
+  handleScroll()
 
   // Mobile menu toggle logic
   const toggleMenu = () => {
