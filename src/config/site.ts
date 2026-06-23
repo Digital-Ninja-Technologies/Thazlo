@@ -2,7 +2,7 @@ import { MapPin, Phone, Mail } from "@lucide/astro"
 
 export const routes = {
   home: "/",
-  services: { index: "/services", gasRefill: "/services/gas-refill", laundry: "/services/laundry", fixRepair: "/services/fix-repair" },
+  services: { index: "/#services", gasRefill: "/#services", laundry: "/#services", fixRepair: "/#services" },
   about: "/about",
   contact: "/contact",
   careers: "/careers",
