@@ -1,0 +1,48 @@
+---
+import SectionHeader from "@/components/ui/section-header.astro"
+---
+
+<section class="section-wrapper pt-32 md:pt-40">
+  {/* Top Header Section */}
+  <div class="flex flex-col items-center justify-center space-y-6 text-center">
+    <SectionHeader label="ABOUT US">
+      We exist to make <br class="hidden md:block" />
+      <span class="text-primary">home life easier</span>
+    </SectionHeader>
+
+    <p class="section-description max-w-2xl text-center">
+      T Hazlo was born from a simple frustration: why should running out of gas
+      or keeping clothes clean be this hard? We built the solution.
+    </p>
+  </div>
+
+  {/* Two-Column Problem Section */}
+  <div class="mt-24 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16 lg:mt-32">
+    {/* Left Column: Heading */}
+    <div class="space-y-4">
+      <h3 class="text-sm font-semibold tracking-widest text-primary uppercase">
+        The Problem We Are Solving
+      </h3>
+      <h2 class="text-3xl leading-tight font-bold md:text-4xl lg:text-5xl">
+        88% of people are too busy to handle household chores efficiently
+      </h2>
+    </div>
+
+    {/* Right Column: Paragraphs */}
+    <div
+      class="flex flex-col justify-center space-y-6 text-lg leading-relaxed text-muted-foreground"
+    >
+      <p>
+        Between demanding work schedules, family responsibilities, and daily
+        commutes, millions of Nigerian households struggle with routine tasks
+        like gas refills and laundry not because they're hard, but because time
+        is scarce.
+      </p>
+      <p>
+        T Hazlo Innovations Limited was founded to bridge this gap, combining
+        verified vendors, smart logistics and an intuitive app to make essential
+        home services instantly accessible.
+      </p>
+    </div>
+  </div>
+</section>

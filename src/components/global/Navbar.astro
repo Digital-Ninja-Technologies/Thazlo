@@ -21,9 +21,11 @@ const isActive = (href: string) => {
   return pathname === target || pathname.startsWith(`${target}/`)
 }
 
+/* before:absolute before:-bottom-1 before:left-1/2 before:hidden before:size-2 before:-translate-x-1/2 before:rounded-full before:content-[''] */
+
 const navLinkClass = (active: boolean) =>
   cn(
-    "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors outline-none before:absolute before:-bottom-1 before:left-1/2 before:hidden before:size-2 before:-translate-x-1/2 before:rounded-full before:content-[''] focus-visible:ring-2 focus-visible:ring-ring",
+    "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring",
     active
       ? "bg-secondary/80 text-primary"
       : "text-muted-foreground hover:bg-secondary/20 hover:text-primary"

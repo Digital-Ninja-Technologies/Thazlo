@@ -1,0 +1,63 @@
+---
+import SectionHeader from "@/components/ui/section-header.astro"
+import { ShieldCheck } from "@lucide/astro"
+
+const valuesData = [
+  {
+    label: "Reliability",
+    title: "Show up, every time",
+    description:
+      "Customers depend on us for essentials. We take that responsibility seriously and deliver consistently.",
+  },
+  {
+    label: "Trust",
+    title: "Verified, always",
+    description:
+      "Every vendor on our platform is vetted, monitored and held to a clear quality standard.",
+  },
+  {
+    label: "Simplicity",
+    title: "One tap is enough",
+    description:
+      "We design for the busiest person. If it takes more than a minute, we rebuild it until it doesn't.",
+  },
+  {
+    label: "Growth",
+    title: "Built for Nigeria",
+    description:
+      "We're scaling thoughtfully, expanding services and regions while keeping quality high.",
+  },
+]
+---
+
+<section class="section-wrapper my-16 rounded-4xl bg-muted/30 dark:bg-muted/10">
+  <SectionHeader label="Our Values">
+    What drives everything we do
+  </SectionHeader>
+
+  <div class="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      valuesData.map((value) => (
+        <div class="flex h-full flex-col rounded-2xl border border-border/50 bg-card p-4 shadow-sm md:p-6 dark:bg-muted/30">
+          {/* Icon & Label */}
+          <div class="flex items-center gap-2">
+            <ShieldCheck class="size-8 fill-primary stroke-[1.5] text-background" />
+            <span class="text-sm font-semibold tracking-wide text-primary uppercase">
+              {value.label}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h3 class="mt-4 text-xl font-bold tracking-tight text-foreground">
+            {value.title}
+          </h3>
+
+          {/* Description */}
+          <p class="mt-3 text-base leading-relaxed text-muted-foreground">
+            {value.description}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>
