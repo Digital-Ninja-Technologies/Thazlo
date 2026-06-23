@@ -27,7 +27,7 @@ const serviceRoutes = [
 ]
 
 export const siteConfig = {
-  name: "T HAZLO",
+  name: "THAZLO",
 
   description:
     "An all-in-one app for everyday home services. Order cooking gas, schedule laundry pickups, and book reliable maintenance workers easily.",
