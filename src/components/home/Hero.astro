@@ -3,7 +3,9 @@ import { StoreButton } from "@/components/ui/store-button"
 import AppImg from "@/assets/image/hero-app.png"
 import LogoWatermark from "@/assets/image/logo-watermark.png"
 import { Image } from "astro:assets"
-import { Star } from "@lucide/astro"
+import { ChevronRight, Star } from "@lucide/astro"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 ---
 
 <section class="relative overflow-hidden pt-32 md:pt-34">
@@ -22,7 +24,7 @@ import { Star } from "@lucide/astro"
   </div>
 
   <div
-    class="section-wrapper pb-0! relative z-10 flex flex-col items-center justify-center space-y-10 text-center"
+    class="section-wrapper relative z-10 flex flex-col items-center justify-center space-y-10 pb-0! text-center"
   >
     {/* Headings */}
     <div class="max-w-4xl space-y-6">
@@ -61,8 +63,25 @@ import { Star } from "@lucide/astro"
     <div
       class="animate-fade-in-up animate-delay-300 flex flex-wrap items-center justify-center gap-4"
     >
-      <StoreButton platform="apple" />
-      <StoreButton platform="google" />
+      <a
+        href="/#how-it-works"
+        class={cn(buttonVariants({ variant: "outline", size: "lg" }), "border")}
+        >How it Works</a
+      >
+
+      <a
+        href="/download-app"
+        class={cn(
+          buttonVariants({
+            size: "lg",
+            animate: "slide",
+          }),
+          "shadow-lg shadow-primary/20"
+        )}
+      >
+        Get the App
+        <ChevronRight />
+      </a>
     </div>
 
     {/* Badge */}
