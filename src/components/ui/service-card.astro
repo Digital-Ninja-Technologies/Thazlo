@@ -1,4 +1,98 @@
 ---
+import { cn } from "@/lib/utils"
+import { Check } from "@lucide/astro"
+import { buttonVariants } from "./button"
 
+interface Props {
+  label: string
+  title: string
+  description: string
+  cta: string
+  link: string
+  merits: string[]
+  isHighlighted?: boolean
+}
+
+const {
+  label,
+  title,
+  description,
+  cta,
+  link,
+  merits,
+  isHighlighted = false,
+} = Astro.props
 ---
 
+<div
+  class:list={[
+    "flex h-full flex-col rounded-3xl border p-8 md:p-10",
+    isHighlighted
+      ? "border-primary bg-primary text-white md:rotate-1"
+      : "border-border bg-secondary dark:bg-card text-foreground md:-rotate-1",
+  ]}
+>
+  <div class="mb-4">
+    <span
+      class:list={[
+        "text-sm font-semibold",
+        isHighlighted ? "text-white/90" : "text-primary",
+      ]}
+    >
+      {label}
+    </span>
+    <h3 class="mt-2 text-3xl font-bold tracking-tight">
+      {title}
+    </h3>
+  </div>
+
+  <p
+    class:list={[
+      "mb-8 text-lg leading-relaxed",
+      isHighlighted ? "text-white/90" : "text-muted-foreground",
+    ]}
+  >
+    {description}
+  </p>
+
+  <ul class="mb-10 flex flex-col gap-4">
+    {
+      merits.map((merit) => (
+        <li class="flex items-start gap-3">
+          <Check
+            class:list={[
+              "mt-0.5 size-5 shrink-0 stroke-3",
+              isHighlighted ? "text-white" : "text-primary",
+            ]}
+          />
+          <span
+            class:list={[
+              "text-base",
+              isHighlighted ? "text-white" : "text-foreground/80",
+            ]}
+          >
+            {merit}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="mt-auto pt-4">
+    <a
+      href={link}
+      class={cn(
+        buttonVariants({
+          variant: isHighlighted ? "secondary" : "outline",
+          size: "lg",
+        }),
+        "px-8",
+        isHighlighted
+          ? "bg-white text-primary hover:bg-white/90"
+          : "border-primary border text-primary hover:bg-primary/5"
+      )}
+    >
+      {cta}
+    </a>
+  </div>
+</div>

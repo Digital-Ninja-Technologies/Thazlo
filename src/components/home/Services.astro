@@ -1,13 +1,45 @@
 ---
+import ServiceCard from "@/components/ui/service-card.astro"
+import SectionHeader from "@/components/ui/section-header.astro"
 
+export const servicesData = [
+  {
+    label: "Thazlo Gas",
+    title: "Never run out of gas again",
+    description:
+      "Order cooking gas refills right from the app. We partner with certified vendors to ensure safe, reliable delivery every time",
+    merits: [
+      "All cylinder sizes available",
+      "Real-time order tracking",
+      "Safe, certified vendors only",
+      "Pay on delivery supported",
+    ],
+    cta: "Order Gas",
+    isHighlighted: false,
+    link: "#",
+  },
+  {
+    label: "Thazlo Laundry",
+    title: "Freshly laundered, every time",
+    description:
+      "Schedule a pickup, and we return your clothes clean, pressed and ready to wear. No more laundry day stress.",
+    merits: [
+      "Clothes, bedding, towels & more",
+      "Schedule pickup at your convenience",
+      "Professional cleaning standards",
+      "Doorstep delivery when done",
+    ],
+    cta: "Order laundry",
+    isHighlighted: true,
+    link: "#",
+  },
+]
 ---
 
-<section class="section-wrapper">
-  <div class="flex flex-col items-center space-y-4">
-    <h3 class="text-lg font-medium tracking-widest text-primary uppercase">
-      OUR SERVICES
-    </h3>
+<section class="section-wrapper" id="services">
+  <SectionHeader label="Our Services"> The Thazlo Advantage </SectionHeader>
 
-    <h2 class="section-title uppercase">THE THAZLO ADVANTAGE</h2>
+  <div class="mt-20 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
+    {servicesData.map((service) => <ServiceCard {...service} />)}
   </div>
 </section>
