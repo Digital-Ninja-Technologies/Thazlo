@@ -111,7 +111,7 @@ import { Textarea } from "../ui/textarea"
 
     if (!form) return
 
-    // Quick append @gmail.com logic
+    // append @gmail.com logic
     if (gmailChip && emailInput) {
       gmailChip.addEventListener("click", () => {
         const currentVal = emailInput.value.trim()
@@ -125,13 +125,13 @@ import { Textarea } from "../ui/textarea"
     form.addEventListener("submit", async (e) => {
       e.preventDefault()
 
-      // Trigger native browser validation UI
+      // trigger validation
       if (!form.checkValidity()) {
         form.reportValidity()
         return
       }
 
-      // 1. Enter Loading State
+      // trigger loading
       btn.disabled = true
       if (btnText) btnText.classList.add("hidden")
       if (btnSpinner) btnSpinner.classList.remove("hidden")
@@ -140,11 +140,15 @@ import { Textarea } from "../ui/textarea"
         formStatus.textContent = ""
       }
 
-      // 2. Process Submission (Replace this setTimeout with actual fetch logic later)
+      // process submission
       try {
+        const formData = new FormData(form)
+        const submittedData = Object.fromEntries(formData.entries())
+
+        console.log("data:", submittedData)
         await new Promise((resolve) => setTimeout(resolve, 1500))
 
-        // Success Actions
+        // on success
         form.reset()
         if (formStatus) {
           formStatus.textContent =
@@ -153,14 +157,14 @@ import { Textarea } from "../ui/textarea"
           formStatus.classList.add("text-green-600", "dark:text-green-400")
         }
       } catch (error) {
-        // Error Actions
+        // on error
         if (formStatus) {
           formStatus.textContent = "Something went wrong. Please try again."
           formStatus.classList.remove("hidden")
           formStatus.classList.add("text-red-600", "dark:text-red-400")
         }
       } finally {
-        // 3. Exit Loading State
+        // exit loading state
         btn.disabled = false
         if (btnText) btnText.classList.remove("hidden")
         if (btnSpinner) btnSpinner.classList.add("hidden")

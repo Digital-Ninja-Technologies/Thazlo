@@ -12,12 +12,12 @@ const contactItems = [location, emails[0], phone]
       const Icon = item.icon
       return (
         <div class="group flex flex-col items-center justify-center rounded-[2rem] bg-muted/30 p-8 text-center text-foreground transition-colors duration-300 hover:bg-primary hover:text-white dark:bg-muted/10 dark:hover:bg-primary">
-          {/* Icon Container */}
+          {/* icon */}
           <div class="mb-4 flex size-14 items-center justify-center rounded-full bg-primary text-white shadow-sm transition-colors duration-300 group-hover:bg-white group-hover:text-primary">
             <Icon class="size-6" />
           </div>
 
-          {/* Text Content */}
+          {/* text content */}
           <h3 class="mb-2 font-bold">{item.label}</h3>
           <p class="text-sm text-muted-foreground transition-colors duration-300 group-hover:text-white/90">
             {item.value}

@@ -66,13 +66,13 @@ const faqs = [
       button.addEventListener("click", () => {
         const isOpen = faq.getAttribute("data-state") === "open"
 
-        // Close all items
+        // close all
         faqs.forEach((f) => {
           f.setAttribute("data-state", "closed")
           f.querySelector(".faq-button")?.setAttribute("aria-expanded", "false")
         })
 
-        // Open the clicked item if it was previously closed
+        // open clicked item if it was previously closed
         if (!isOpen) {
           faq.setAttribute("data-state", "open")
           button.setAttribute("aria-expanded", "true")
@@ -81,7 +81,7 @@ const faqs = [
     })
   }
 
-  // Initialize on load
+  // init on load
   initAccordions()
 
   document.addEventListener("astro:after-swap", initAccordions)

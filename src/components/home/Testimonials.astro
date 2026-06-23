@@ -45,7 +45,7 @@ const marqueeItems = [...testimonials, ...testimonials]
     >
     </div>
 
-    {/* The scrolling track */}
+    {/* scrolling track */}
     <div
       class="animate-marquee flex w-max min-w-full shrink-0 items-stretch gap-6 py-4"
     >
@@ -60,7 +60,7 @@ const marqueeItems = [...testimonials, ...testimonials]
             ]}
           >
             <div>
-              {/* Star Rating */}
+              {/* star rating */}
               <div class="mb-6 flex gap-1">
                 {Array.from({ length: 5 }, (_, i) => (
                   <Star
@@ -78,7 +78,7 @@ const marqueeItems = [...testimonials, ...testimonials]
                 ))}
               </div>
 
-              {/* Review Text */}
+              {/* review */}
               <p
                 class:list={[
                   "mb-8 text-lg leading-relaxed font-medium italic",
@@ -89,7 +89,7 @@ const marqueeItems = [...testimonials, ...testimonials]
               </p>
             </div>
 
-            {/* Author Details (pushed to the bottom via flex-col justify-between) */}
+            {/* author details */}
             <div class="mt-auto flex flex-col items-end pt-4 text-right">
               <p class="font-bold">{review.author}</p>
               <p

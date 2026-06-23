@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/main.astro"
+import { siteConfig } from "@/config/site"
+import Download from "@/components/download/Download.astro"
+import Features from "@/components/download/Features.astro"
+import SocialProof from "@/components/download/SocialProof.astro"
+---
+
+<Layout title="Download Our App - THAZLO" description={siteConfig.description}>
+  <Download />
+  <Features />
+  <SocialProof />
+</Layout>

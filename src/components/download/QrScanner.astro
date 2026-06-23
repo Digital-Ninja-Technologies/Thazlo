@@ -1,0 +1,85 @@
+---
+interface Props {
+  appleQr?: string
+  googleQr?: string
+}
+
+const {
+  appleQr = "https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=AppStoreLink",
+  googleQr = "https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=PlayStoreLink",
+} = Astro.props
+---
+
+<div class="flex flex-col items-center justify-center space-y-8">
+  <p class="text-lg font-medium tracking-widest text-foreground uppercase">
+    OR
+  </p>
+
+  <h3 class="text-2xl font-medium text-foreground">Scan to download app</h3>
+
+  <div
+    class="flex items-center justify-center rounded-[2rem] p-4 transition-transform duration-300 hover:scale-105"
+  >
+    <img
+      id="qr-code-image"
+      src={appleQr}
+      alt="Scan to download"
+      class="size-40 object-contain dark:invert"
+      data-apple={appleQr}
+      data-google={googleQr}
+      loading="lazy"
+    />
+  </div>
+
+  <div
+    class="inline-flex items-center rounded-full border border-border/50 bg-background p-1.5 shadow-sm"
+  >
+    <button
+      id="qr-btn-apple"
+      class="rounded-full bg-primary px-8 py-2.5 text-sm font-medium text-white transition-colors"
+    >
+      App Store
+    </button>
+    <button
+      id="qr-btn-google"
+      class="rounded-full bg-transparent px-8 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+    >
+      Play store
+    </button>
+  </div>
+</div>
+
+<script>
+  const setupQrToggle = () => {
+    const btnApple = document.getElementById("qr-btn-apple")
+    const btnGoogle = document.getElementById("qr-btn-google")
+    const qrImage = document.getElementById("qr-code-image") as HTMLImageElement
+
+    if (!btnApple || !btnGoogle || !qrImage) return
+
+    const appleSrc = qrImage.dataset.apple
+    const googleSrc = qrImage.dataset.google
+
+    const setActive = (platform: "apple" | "google") => {
+      if (platform === "apple") {
+        btnApple.className =
+          "rounded-full bg-primary px-6 py-2 text-sm font-medium text-white transition-colors"
+        btnGoogle.className =
+          "rounded-full bg-transparent px-6 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        if (appleSrc) qrImage.src = appleSrc
+      } else {
+        btnGoogle.className =
+          "rounded-full bg-primary px-6 py-2 text-sm font-medium text-white transition-colors"
+        btnApple.className =
+          "rounded-full bg-transparent px-6 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        if (googleSrc) qrImage.src = googleSrc
+      }
+    }
+
+    btnApple.addEventListener("click", () => setActive("apple"))
+    btnGoogle.addEventListener("click", () => setActive("google"))
+  }
+
+  setupQrToggle()
+  document.addEventListener("astro:after-swap", setupQrToggle)
+</script>

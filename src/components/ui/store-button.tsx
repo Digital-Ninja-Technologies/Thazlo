@@ -17,11 +17,10 @@ export function StoreButton({
   const topText = isApple ? "Download on the" : "GET IT ON"
   const bottomText = isApple ? "App Store" : "Google Play"
 
-  // We override your button's default h-9 and rounded-4xl here
   const baseClasses = "h-[52px] rounded-xl px-4 gap-3 py-2 flex items-center"
 
   const variantClasses = {
-    dark: "bg-black text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90",
+    dark: "bg-black text-white hover:text-foreground hover:border-primary hover:bg-transparent border border-transparent dark:bg-white dark:text-black dark:hover:bg-white/90",
     outline: "bg-background text-foreground dark:hover:text-white hover:text-background border-2 border-primary hover:bg-primary/5",
   }
 

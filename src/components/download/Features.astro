@@ -1,0 +1,32 @@
+---
+import { ShieldCheck } from "@lucide/astro"
+
+const features = [
+  "24/7 SUPPORT",
+  "DOORSTEP DELIVERY",
+  "GAS DELIVERY",
+  "LAUNDRY CARE",
+]
+
+const baseSet = [...features, ...features, ...features, ...features]
+const marqueeItems = [...baseSet, ...baseSet]
+---
+
+<div
+  class="flex w-full overflow-hidden border-y border-border/50 bg-secondary py-6"
+>
+  <div
+    class="animate-marquee flex w-max min-w-full shrink-0 items-center gap-12 px-6 sm:gap-20 sm:px-10"
+  >
+    {
+      marqueeItems.map((feature) => (
+        <div class="flex items-center gap-3">
+          <ShieldCheck class="size-6 shrink-0 fill-primary stroke-[1.5] text-secondary md:size-7" />
+          <span class="text-sm font-bold tracking-wide whitespace-nowrap text-foreground/80 md:text-base">
+            {feature}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</div>
