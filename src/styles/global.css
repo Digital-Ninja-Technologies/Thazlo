@@ -176,7 +176,7 @@
   }
 
   .badge {
-    @apply inline-flex items-center gap-2 rounded-full bg-background px-4 py-1.5 text-sm font-medium text-muted-foreground shadow-xs ring-1 ring-border/30 dark:ring-border/50;
+    @apply inline-flex items-center gap-2 rounded-full bg-background px-4 py-2 text-sm font-medium text-muted-foreground shadow-xs ring-1 ring-border/30 dark:ring-border/50;
   }
 }
 
