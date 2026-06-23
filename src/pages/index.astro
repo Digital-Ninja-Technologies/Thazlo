@@ -3,9 +3,15 @@ import Layout from "@/layouts/main.astro"
 import { siteConfig } from "@/config/site"
 import Hero from "@/components/home/Hero.astro"
 import Services from "@/components/home/Services.astro"
+import HowItWorks from "@/components/home/HowItWorks.astro"
+import Testimonials from "@/components/home/Testimonials.astro"
+import FAQs from "@/components/home/Faqs.astro"
 ---
 
 <Layout title="Home - THAZLO" description={siteConfig.description}>
   <Hero />
   <Services />
+  <HowItWorks />
+  <Testimonials />
+  <FAQs />
 </Layout>
