@@ -22,7 +22,7 @@ export function StoreButton({
 
   const variantClasses = {
     dark: "bg-black text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90",
-    outline: "bg-background text-foreground hover:text-background border-2 border-primary hover:bg-primary/5",
+    outline: "bg-background text-foreground dark:hover:text-white hover:text-background border-2 border-primary hover:bg-primary/5",
   }
 
   return (

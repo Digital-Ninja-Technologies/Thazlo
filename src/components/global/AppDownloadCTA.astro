@@ -1,0 +1,49 @@
+---
+import { StoreButton } from "@/components/ui/store-button"
+import PhoneImg from "@/assets/image/thazlo-phone-app.png"
+import { Image } from "astro:assets"
+---
+
+<section class="section-wrapper flex justify-center pb-24">
+  <div
+    class="grid w-full grid-cols-1 items-center gap-12 rounded-3xl bg-foreground px-8 py-12 shadow-xl md:grid-cols-2 lg:gap-16 lg:px-16 dark:bg-muted/30"
+  >
+    {/* image */}
+    <div class="flex items-center justify-center">
+      <Image
+        src={PhoneImg}
+        height={500}
+        loading="lazy"
+        alt="Thazlo app on a phone"
+        class="h-auto w-full max-w-65 object-contain drop-shadow-2xl sm:max-w-80 md:max-w-95"
+      />
+    </div>
+
+    {/* text */}
+    <div class="flex flex-col justify-center space-y-6">
+      <h3
+        class="text-xs font-semibold tracking-widest text-muted-foreground uppercase"
+      >
+        FREE TO DOWNLOAD
+      </h3>
+
+      <h2
+        class="section-title text-4xl text-background md:text-5xl dark:text-foreground"
+      >
+        Get <span class="text-primary">Thazlo</span> on your phone today!
+      </h2>
+
+      <p
+        class="section-description text-background/80 dark:text-muted-foreground"
+      >
+        Join thousands of households across Nigeria who've simplified their home
+        services. Available on both iOS and Android — no subscription needed.
+      </p>
+
+      <div class="flex flex-wrap gap-4 pt-2">
+        <StoreButton platform="apple" storeVariant="outline" />
+        <StoreButton platform="google" storeVariant="outline" />
+      </div>
+    </div>
+  </div>
+</section>

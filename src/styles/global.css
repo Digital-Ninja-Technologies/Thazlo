@@ -134,7 +134,7 @@
   }
 
   html {
-    @apply font-sans;
+    @apply font-sans antialiased;
   }
 
   ::-webkit-scrollbar {
@@ -172,7 +172,7 @@
   }
 
   .link {
-    @apply flex items-center gap-2 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-white w-fit text-white/80 transition-colors hover:text-white
+    @apply flex w-fit items-center gap-2 rounded-sm text-white/80 transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white;
   }
 }
 

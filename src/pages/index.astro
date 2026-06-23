@@ -1,10 +1,9 @@
 ---
 import Layout from "@/layouts/main.astro"
-import AppDownloadCTA from "@/components/AppDownloadCTA.astro"
+import { siteConfig } from "@/config/site"
+import Hero from "@/components/home/Hero.astro"
 ---
 
-<Layout title="Home - THAZLO">
-  <div class="flex min-h-svh p-6">
-    <AppDownloadCTA />
-  </div>
+<Layout title="Home - THAZLO" description={siteConfig.description}>
+  <Hero />
 </Layout>
