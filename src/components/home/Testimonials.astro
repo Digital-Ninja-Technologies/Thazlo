@@ -1,0 +1,111 @@
+---
+import SectionHeader from "@/components/ui/section-header.astro"
+import { Star } from "@lucide/astro"
+
+const testimonials = [
+  {
+    rating: 4,
+    text: "I ordered gas at 8am and it arrived before I left for work. Thazlo has genuinely changed my mornings.",
+    author: "Adaeze Femi",
+    location: "Lagos Island",
+    isHighlighted: false,
+  },
+  {
+    rating: 4,
+    text: "Tracking the delivery in real time gave me so much confidence. This is how every service should work..",
+    author: "Chisom Nwosu",
+    location: "Victoria Island",
+    isHighlighted: false,
+  },
+  {
+    rating: 4,
+    text: "The laundry service is spotless literally. I get my clothes back cleaner than I've ever managed myself..",
+    author: "Tunde Kolawole",
+    location: "Akure, Ondo State",
+    isHighlighted: true,
+  },
+]
+
+const marqueeItems = [...testimonials, ...testimonials]
+---
+
+<section class="section-wrapper relative overflow-hidden pt-20 md:pt-24">
+  <SectionHeader label="Testimonials">
+    What customers are saying
+  </SectionHeader>
+
+  <div class="mt-20">
+    <div
+      class="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-linear-to-r from-background to-transparent md:w-32"
+    >
+    </div>
+
+    <div
+      class="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-linear-to-l from-background to-transparent md:w-32"
+    >
+    </div>
+
+    {/* The scrolling track */}
+    <div
+      class="animate-marquee flex w-max min-w-full shrink-0 items-stretch gap-6 py-4"
+    >
+      {
+        marqueeItems.map((review, index) => (
+          <div
+            class:list={[
+              "flex w-[320px] shrink-0 flex-col justify-between rounded-2xl border p-8 shadow-sm md:w-100",
+              review.isHighlighted
+                ? "border-primary bg-primary text-white"
+                : "border-border bg-card text-foreground dark:bg-muted/30",
+            ]}
+          >
+            <div>
+              {/* Star Rating */}
+              <div class="mb-6 flex gap-1">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Star
+                    class:list={[
+                      "size-5",
+                      i < review.rating
+                        ? review.isHighlighted
+                          ? "fill-white text-white"
+                          : "fill-primary text-primary"
+                        : review.isHighlighted
+                          ? "fill-transparent text-white/50"
+                          : "fill-transparent text-muted-foreground",
+                    ]}
+                  />
+                ))}
+              </div>
+
+              {/* Review Text */}
+              <p
+                class:list={[
+                  "mb-8 text-lg leading-relaxed font-medium italic",
+                  review.isHighlighted ? "text-white/95" : "text-foreground/90",
+                ]}
+              >
+                "{review.text}"
+              </p>
+            </div>
+
+            {/* Author Details (pushed to the bottom via flex-col justify-between) */}
+            <div class="mt-auto flex flex-col items-end pt-4 text-right">
+              <p class="font-bold">{review.author}</p>
+              <p
+                class:list={[
+                  "mt-1 text-sm",
+                  review.isHighlighted
+                    ? "text-white/80"
+                    : "text-muted-foreground",
+                ]}
+              >
+                {review.location}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+---
+import { ChevronDown } from "@lucide/astro"
+
+const faqs = [
+  {
+    question: "What services does Thazlo offer?",
+    answer:
+      "Thazlo connects users to trusted professionals who provide gas (gas refills, gas cylinders), laundry, and fix & repair services, all designed to make home maintenance simple, safe, and convenient.",
+  },
+  {
+    question: "How do I book a service on Thazlo?",
+    answer:
+      "You can easily book a service through the Thazlo App by selecting your preferred service, choosing a date and time, and confirming your request. It only takes a few clicks.",
+  },
+  {
+    question:
+      "How does Thazlo ensure the safety and reliability of its vendors?",
+    answer:
+      "Every vendor on Thazlo goes through a strict verification process, background checks, and quality assurance reviews to guarantee professionalism and customer safety.",
+  },
+]
+---
+
+<section class="section-wrapper" id="faqs">
+  <div class="mx-auto mb-16 flex max-w-3xl flex-col items-center text-center">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+  </div>
+
+  <div class="mx-auto max-w-prose space-y-4">
+    {
+      faqs.map((faq, index) => (
+        <div
+          class="faq-item group flex flex-col border-b border-border/40 last:border-0"
+          data-state={index === 0 ? "open" : "closed"}
+        >
+          <button
+            type="button"
+            class="faq-button flex w-full items-center justify-between py-6 text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
+            aria-expanded={index === 0 ? "true" : "false"}
+          >
+            <span class="text-xl font-semibold">{faq.question}</span>
+            <ChevronDown class="size-4 shrink-0 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+          </button>
+
+          <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-data-[state=open]:grid-rows-[1fr]">
+            <div class="overflow-hidden">
+              <p class="pb-8 text-lg leading-relaxed text-muted-foreground">
+                {faq.answer}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const initAccordions = () => {
+    const faqs = document.querySelectorAll(".faq-item")
+
+    faqs.forEach((faq) => {
+      const button = faq.querySelector(".faq-button")
+      if (!button) return
+
+      button.addEventListener("click", () => {
+        const isOpen = faq.getAttribute("data-state") === "open"
+
+        // Close all items
+        faqs.forEach((f) => {
+          f.setAttribute("data-state", "closed")
+          f.querySelector(".faq-button")?.setAttribute("aria-expanded", "false")
+        })
+
+        // Open the clicked item if it was previously closed
+        if (!isOpen) {
+          faq.setAttribute("data-state", "open")
+          button.setAttribute("aria-expanded", "true")
+        }
+      })
+    })
+  }
+
+  // Initialize on load
+  initAccordions()
+
+  document.addEventListener("astro:after-swap", initAccordions)
+</script>
