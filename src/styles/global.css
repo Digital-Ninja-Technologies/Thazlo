@@ -164,7 +164,7 @@
   }
 
   .section-title {
-    @apply text-5xl leading-[1.1] font-bold tracking-tight md:text-6xl;
+    @apply text-4xl leading-[1.1] font-bold tracking-tight md:text-6xl;
   }
 
   .section-description {
@@ -173,6 +173,10 @@
 
   .link {
     @apply flex w-fit items-center gap-2 rounded-sm text-white/80 transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-white;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-2 rounded-full bg-background px-4 py-1.5 text-sm font-medium text-muted-foreground shadow-xs ring-1 ring-border/30 dark:ring-border/50;
   }
 }
 

@@ -1,5 +1,100 @@
 ---
-
+import { StoreButton } from "@/components/ui/store-button"
+import AppImg from "@/assets/image/hero-app.png"
+import LogoWatermark from "@/assets/image/logo-watermark.png"
+import { Image } from "astro:assets"
+import { Star } from "@lucide/astro"
 ---
 
-<section>Hero</section>
+<section class="relative overflow-hidden pt-32 pb-16 md:pt-34">
+  {/* bg logo */}
+  <div
+    class="pointer-events-none absolute top-20 left-1/2 z-[-1] -translate-x-1/2 md:top-16"
+  >
+    <Image
+      src={LogoWatermark}
+      alt=""
+      aria-hidden="true"
+      loading="eager"
+      priority
+      class="h-auto w-100 max-w-none md:w-170"
+    />
+  </div>
+
+  <div
+    class="section-wrapper relative z-10 flex flex-col items-center justify-center space-y-10 text-center"
+  >
+    {/* Headings */}
+    <div class="max-w-4xl space-y-6">
+      <div class="flex flex-wrap justify-center gap-4">
+        <span class="badge">
+          {
+            Array.from({ length: 5 }, (_, i) => (
+              <Star
+                class:list={[
+                  "size-4 fill-muted text-muted",
+                  { "fill-primary text-primary": i + 1 < 4 },
+                ]}
+              />
+            ))
+          }
+          <span>3.0 Rating</span>
+        </span>
+        <span class="badge"> 24/7 Customer Care </span>
+      </div>
+
+      <h1 class="animate-fade-in-up section-title">
+        Get Gas and Laundry Service <br class="hidden md:block" />
+        <span class="text-primary">Anytime, Anywhere</span>
+      </h1>
+
+      <p
+        class="section-description animate-fade-in-up animate-delay-150 mx-auto"
+      >
+        <span class="font-medium text-primary">Gas refills</span> delivered to your
+        doorstep. <span class="font-medium text-primary">Laundry</span> picked up
+        and returned spotless. Thazlo handles the hassle so you don't have to.
+      </p>
+    </div>
+
+    {/* CTAs */}
+    <div
+      class="animate-fade-in-up animate-delay-300 flex flex-wrap items-center justify-center gap-4"
+    >
+      <StoreButton platform="apple" />
+      <StoreButton platform="google" />
+    </div>
+
+    {/* Badge */}
+    <div class="animate-fade-in-down">
+      <span class="badge">
+        <span class="size-2.5 animate-pulse rounded-full bg-primary"></span>
+        Now available across Nigeria
+      </span>
+    </div>
+
+    {/* hero img */}
+    <div class="animate-fade-in-up animate-delay-500 w-full max-w-150">
+      <div class="relative mx-auto overflow-hidden">
+        {/* glow */}
+        <div
+          class="absolute inset-0 z-[-1] bg-linear-to-t from-background via-primary/5 to-transparent"
+        >
+        </div>
+
+        <Image
+          src={AppImg}
+          alt="Thazlo app home screen"
+          class="h-auto w-full rounded-t-3xl object-cover"
+          loading="eager"
+        />
+
+        {/* Fade out gradient at the bottom edge */}
+        <div
+          class="absolute right-0 bottom-0 left-0 h-32 bg-linear-to-t from-background to-transparent"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
