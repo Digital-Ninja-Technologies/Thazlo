@@ -1,0 +1,28 @@
+---
+import SectionHeader from "@/components/ui/section-header.astro"
+import ContactDetails from "@/components/contact/ContactDetails.astro"
+import ContactForm from "@/components/contact/ContactForm.astro"
+---
+
+<section class="section-wrapper pt-32 md:pt-40">
+  <div class="flex flex-col items-center justify-center space-y-6 text-center">
+    <SectionHeader label="CONTACT US">
+      We're here to <span class="text-primary">help you</span>
+    </SectionHeader>
+
+    <p class="section-description max-w-2xl text-center">
+      Whether you have a question about an order, a partnership inquiry, or just
+      want to say hello — we'd love to hear from you.
+    </p>
+  </div>
+
+  <div class="mt-20 grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8 xl:gap-12 max-w-5xl mx-auto">
+    <div class="lg:col-span-1">
+      <ContactDetails />
+    </div>
+
+    <div class="lg:col-span-2">
+      <ContactForm />
+    </div>
+  </div>
+</section>
