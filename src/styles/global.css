@@ -170,11 +170,11 @@
   }
 
   .section-title {
-    @apply font-heading text-5xl leading-[1.1] font-bold tracking-tight md:text-7xl;
+    @apply font-heading text-4xl leading-[1.2] font-bold tracking-tight md:text-6xl 2xl:text-7xl;
   }
 
   .section-description {
-    @apply max-w-prose text-lg leading-relaxed text-muted-foreground md:text-xl;
+    @apply max-w-prose text-lg leading-relaxed text-pretty text-muted-foreground md:text-xl;
   }
 
   .link {
