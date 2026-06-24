@@ -1,0 +1,77 @@
+---
+import SectionHeader from "@/components/ui/section-header.astro"
+import { Zap, ShieldCheck, Clock } from "@lucide/astro"
+
+const emergencyData = [
+  {
+    title: "Urgent requests",
+    description:
+      "Need gas immediately or a last-minute laundry pickup? We prioritise 911 requests above the regular queue.",
+    icon: Zap,
+    iconClass: "fill-primary text-primary",
+  },
+  {
+    title: "Real human support",
+    description:
+      "You speak directly with a T Hazlo agent. No bots, no scripts, just fast and clear assistance.",
+    icon: ShieldCheck,
+    iconClass: "fill-primary text-background stroke-[1.5]",
+  },
+  {
+    title: "Available 24 / 7",
+    description:
+      "Around the clock, every day of the year. Because emergencies don't follow business hours.",
+    icon: Clock,
+    iconClass: "fill-primary text-background stroke-[1.5]",
+  },
+]
+---
+
+<section class="section-wrapper pt-36 md:pt-40">
+  <div class="flex flex-col items-center justify-center space-y-6 text-center">
+    <SectionHeader label="THAZLO 911" isMain>
+      When you need us <br class="hidden md:block" />most, we
+      <span class="text-primary">answer fast.</span>
+    </SectionHeader>
+
+    <p
+      data-aos="fade-up"
+      data-aos-delay="200"
+      class="section-description max-w-2xl text-center"
+    >
+      Some situations can't wait for an app. Thazlo 911 is our dedicated
+      emergency response line. A direct WhatsApp channel for urgent requests
+      that need an immediate human response.
+    </p>
+  </div>
+
+  <div
+    class="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+  >
+    {
+      emergencyData.map((item, index) => {
+        const Icon = item.icon
+        return (
+          <div
+            class="flex h-full flex-col rounded-2xl border border-border/50 bg-card p-6 shadow-sm dark:bg-muted/30"
+            data-aos="fade-up"
+            data-aos-delay={(index + 1) * 150}
+          >
+            {/* title & icon inline */}
+            <div class="flex items-center gap-3">
+              <Icon class={`size-7 shrink-0 ${item.iconClass}`} />
+              <h3 class="text-xl font-bold tracking-tight text-primary">
+                {item.title}
+              </h3>
+            </div>
+
+            {/* desc */}
+            <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+              {item.description}
+            </p>
+          </div>
+        )
+      })
+    }
+  </div>
+</section>

@@ -2,13 +2,19 @@ import { MapPin, Phone, Mail } from "@lucide/astro"
 
 export const routes = {
   home: "/",
-  services: { index: "/#services", gasRefill: "/#services", laundry: "/#services", fixRepair: "/#services" },
+  services: {
+    index: "/#services",
+    gasRefill: "/#services",
+    laundry: "/#services",
+    fixRepair: "/#services"
+  },
   about: "/about",
   contact: "/contact",
   careers: "/careers",
   terms: "/terms",
   privacy: "/privacy",
-  faq: "/#faqs"
+  faq: "/#faqs",
+  "911": "/911"
 } as const;
 
 const mainNav = [
@@ -16,7 +22,8 @@ const mainNav = [
   { name: "Services", href: routes.services.index },
   { name: "About us", href: routes.about },
   { name: "FAQs", href: routes.faq },
-  // { name: "Get in Touch", href: routes.contact },
+  { name: "911", href: routes["911"] },
+
   // { name: "Careers", href: routes.careers }
 ];
 
@@ -43,7 +50,7 @@ export const siteConfig = {
   },
 
   socials: {
-    facebook: "#",
+    facebook: "#", // TODO: add social links
     instagram: "#",
     linkedin: "#",
   },

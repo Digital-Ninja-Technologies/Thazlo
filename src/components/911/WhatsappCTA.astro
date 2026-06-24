@@ -1,0 +1,99 @@
+---
+import { Clock, MessageSquareText, Lock, Zap } from "@lucide/astro"
+import { Image } from "astro:assets"
+import WhatsAppIcon from "@/assets/icon/whatsapp.svg"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "../ui/button"
+
+const features = [
+  {
+    title: "24/7 Availability",
+    description: "Always online, day or night",
+    icon: Clock,
+  },
+  {
+    title: "Direct WhatsApp line",
+    description: "Straight to a real agent",
+    icon: MessageSquareText,
+  },
+  {
+    title: "Priority Fulfilment",
+    description: "911 orders go to the front",
+    icon: Zap,
+  },
+  {
+    title: "Fully Confidential",
+    description: "Your details stays private",
+    icon: Lock,
+  },
+]
+---
+
+<section class="section-wrapper py-24">
+  {/* split header */}
+  <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+    <div data-aos="fade-right">
+      <h2 class="text-3xl font-bold tracking-tight md:text-4xl">
+        Reach us instantly on WhatsApp
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+        Tap the button to open a direct conversation with the Thazlo 911 team.
+        Describe your situation and we'll respond immediately to get things
+        moving.
+      </p>
+    </div>
+
+    <div
+      class="flex flex-col items-start lg:items-end"
+      data-aos="fade-left"
+      data-aos-delay="100"
+    >
+      <a
+        href="https://wa.me/YOUR_PHONE_NUMBER"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={cn(
+          buttonVariants({ size: "lg" }),
+          "h-12 bg-success hover:bg-success/90"
+        )}
+      >
+        <Image
+          src={WhatsAppIcon}
+          alt="WhatsApp Logo"
+          loading="lazy"
+          class="size-6 object-contain"
+        />
+        Chat on whatsapp
+      </a>
+      <p class="mt-4 text-sm text-muted-foreground">
+        Tap to open WhatsApp. No account needed
+      </p>
+    </div>
+  </div>
+
+  {/* features grid */}
+  <div
+    class="mt-24 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8"
+  >
+    {
+      features.map((feature, index) => {
+        const Icon = feature.icon
+        return (
+          <div
+            class="flex flex-col items-center text-center"
+            data-aos="fade-up"
+            data-aos-delay={index * 150}
+          >
+            <div class="mb-4 flex items-center justify-center">
+              <Icon class="size-10 fill-primary stroke-background stroke-[1.5]" />
+            </div>
+            <h4 class="text-lg font-bold text-foreground">{feature.title}</h4>
+            <p class="mt-2 text-sm text-muted-foreground">
+              {feature.description}
+            </p>
+          </div>
+        )
+      })
+    }
+  </div>
+</section>

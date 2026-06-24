@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/main.astro"
+import { siteConfig } from "@/config/site"
+
+import Hero from "@/components/911/Hero.astro"
+import WhatsappCTA from "@/components/911/WhatsappCTA.astro"
+---
+
+<Layout title="911 | Emergency - THAZLO" description={siteConfig.description}>
+  <Hero />
+  <hr class="my-8" />
+  <WhatsappCTA />
+</Layout>
