@@ -1,12 +1,13 @@
 ---
+import { siteConfig } from "@/config/site"
 interface Props {
   appleQr?: string
   googleQr?: string
 }
 
 const {
-  appleQr = "https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=AppStoreLink",
-  googleQr = "https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=PlayStoreLink",
+  appleQr = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${siteConfig.appLink.apple}`,
+  googleQr = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${siteConfig.appLink.google}`,
 } = Astro.props
 ---
 
@@ -28,16 +29,28 @@ const {
   </h3>
 
   <div
-    class="flex items-center justify-center rounded-[2rem] p-4 transition-transform duration-300 hover:scale-105"
+    class="relative flex size-40 items-center justify-center rounded-3xl p-4 transition-transform duration-300 hover:scale-105"
   >
+    {/* Loading Overlay */}
+    <div
+      id="qr-loader"
+      class="absolute top-1/2 hidden left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-3xl bg-background/80 backdrop-blur-sm"
+    >
+      <div
+        class="size-6 animate-spin rounded-full border-2 border-primary border-t-transparent"
+      >
+      </div>
+    </div>
+
+    {/* QR Image */}
     <img
       id="qr-code-image"
       src={appleQr}
       alt="Scan to download"
-      class="size-40 object-contain dark:invert"
+      class="size-full object-contain transition-opacity duration-300 dark:invert"
       data-apple={appleQr}
       data-google={googleQr}
-      loading="lazy"
+      loading="eager"
       data-aos="zoom-in"
       data-aos-delay="200"
     />
@@ -50,13 +63,13 @@ const {
   >
     <button
       id="qr-btn-apple"
-      class="rounded-full bg-primary px-8 py-2.5 text-sm font-medium text-white transition-colors"
+      class="rounded-full bg-primary px-6 py-2 text-sm font-medium text-white transition-colors"
     >
       App Store
     </button>
     <button
       id="qr-btn-google"
-      class="rounded-full bg-transparent px-8 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+      class="rounded-full bg-transparent px-6 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
     >
       Play store
     </button>
@@ -68,13 +81,29 @@ const {
     const btnApple = document.getElementById("qr-btn-apple")
     const btnGoogle = document.getElementById("qr-btn-google")
     const qrImage = document.getElementById("qr-code-image") as HTMLImageElement
+    const qrLoader = document.getElementById("qr-loader")
 
-    if (!btnApple || !btnGoogle || !qrImage) return
+    if (!btnApple || !btnGoogle || !qrImage || !qrLoader) return
 
     const appleSrc = qrImage.dataset.apple
     const googleSrc = qrImage.dataset.google
 
+    // Hide loader when the image finishes loading
+    qrImage.addEventListener("load", () => {
+      qrLoader.classList.add("hidden")
+      qrImage.classList.remove("opacity-0")
+    })
+
     const setActive = (platform: "apple" | "google") => {
+      const targetSrc = platform === "apple" ? appleSrc : googleSrc
+
+      // Prevent unnecessary network requests and loading states
+      if (qrImage.src === targetSrc) return
+
+      // Trigger loading state
+      qrLoader.classList.remove("hidden")
+      qrImage.classList.add("opacity-0")
+
       if (platform === "apple") {
         btnApple.className =
           "rounded-full bg-primary px-6 py-2 text-sm font-medium text-white transition-colors"
