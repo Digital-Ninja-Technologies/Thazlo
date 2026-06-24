@@ -32,7 +32,7 @@ export const siteConfig = {
   description:
     "An all-in-one app for everyday home services. Order cooking gas, schedule laundry pickups, and book reliable maintenance workers easily.",
 
-  url: "https://t-halzo.com.ng", // TODO: update to the actual site domain
+  url: "https://thazlo.com.ng", // TODO: update to the actual site domain
 
   contact: {
     location: { icon: MapPin, label: "Address", value: "Royal View Estate Lagos, Nigeria" },
