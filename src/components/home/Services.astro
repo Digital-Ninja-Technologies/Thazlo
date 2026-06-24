@@ -40,6 +40,12 @@ export const servicesData = [
   <SectionHeader label="Our Services"> The Thazlo Advantage </SectionHeader>
 
   <div class="mt-20 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
-    {servicesData.map((service) => <ServiceCard {...service} />)}
+    {
+      servicesData.map((service, index) => (
+        <div data-aos="fade-up" data-aos-delay={(index + 1) * 150}>
+          <ServiceCard {...service} />
+        </div>
+      ))
+    }
   </div>
 </section>

@@ -23,7 +23,9 @@ const faqs = [
 
 <section class="section-wrapper" id="faqs">
   <div class="mx-auto mb-16 flex max-w-3xl flex-col items-center text-center">
-    <h2 class="section-title">Frequently Asked Questions</h2>
+    <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+      Frequently Asked Questions
+    </h2>
   </div>
 
   <div class="mx-auto max-w-prose space-y-4">
@@ -32,6 +34,8 @@ const faqs = [
         <div
           class="faq-item group flex flex-col border-b border-border/40 last:border-0"
           data-state={index === 0 ? "open" : "closed"}
+          data-aos="fade-up"
+          data-aos-delay={(index + 1) * 150}
         >
           <button
             type="button"

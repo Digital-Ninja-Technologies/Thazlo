@@ -28,7 +28,7 @@ import { buttonVariants } from "@/components/ui/button"
     {/* headings */}
     <div class="max-w-5xl space-y-6">
       <div class="flex flex-wrap justify-center gap-4">
-        <span class="badge">
+        <span class="badge" data-aos="fade-up" data-aos-delay="100">
           {
             Array.from({ length: 5 }, (_, i) => (
               <Star
@@ -41,20 +41,20 @@ import { buttonVariants } from "@/components/ui/button"
           }
           <span>3.0 Rating</span>
         </span>
-        <span class="badge"> 24/7 Customer Care </span>
+        <span class="badge" data-aos="fade-up" data-aos-delay="100">
+          24/7 Customer Care
+        </span>
       </div>
 
-      <h1
-        class="section-title opacity-0"
-        data-animate="animate-fade-in-up animate-in delay-100 duration-700 ease-out fill-mode-both fade-in slide-in-from-bottom-8"
-      >
+      <h1 class="section-title" data-aos="fade-up" data-aos-delay="200">
         Get Gas and Laundry Service <br class="hidden md:block" />
         <span class="text-primary">Anytime, Anywhere</span>
       </h1>
 
       <p
-        class="section-description mx-auto opacity-0"
-        data-animate="animate-fade-in-up animate-delay-150"
+        class="section-description mx-auto"
+        data-aos="fade-up"
+        data-aos-delay="300"
       >
         <span class="font-medium text-primary">Gas refills</span> delivered to your
         doorstep. <span class="font-medium text-primary">Laundry</span> picked up
@@ -64,8 +64,9 @@ import { buttonVariants } from "@/components/ui/button"
 
     {/* CTAs */}
     <div
-      class="flex flex-wrap items-center justify-center gap-4 opacity-0"
-      data-animate="animate-fade-in-up animate-delay-300"
+      class="flex flex-wrap items-center justify-center gap-4"
+      data-aos="fade-up"
+      data-aos-delay="400"
     >
       <a
         href="/#how-it-works"
@@ -89,7 +90,7 @@ import { buttonVariants } from "@/components/ui/button"
     </div>
 
     {/* badge */}
-    <div class="opacity-0" data-animate="animate-fade-in-down">
+    <div data-aos="fade-up" data-aos-delay="400">
       <span class="badge">
         <span class="size-2.5 animate-pulse rounded-full bg-primary"></span>
         Now available across Nigeria
@@ -97,10 +98,7 @@ import { buttonVariants } from "@/components/ui/button"
     </div>
 
     {/* hero img */}
-    <div
-      class="w-full max-w-150 opacity-0"
-      data-animate="animate-fade-in-up animate-delay-500"
-    >
+    <div class="w-full max-w-150" data-aos="fade-up" data-aos-delay="450">
       <div class="relative mx-auto overflow-hidden">
         {/* glow */}
         <div

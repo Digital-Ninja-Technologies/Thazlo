@@ -208,6 +208,30 @@
     /* TODO: Stop when user hovers to read */
   }
 
+  /* -----------------------------------------
+     AOS Defaults (Animations)
+  ----------------------------------------- */
+
+  body [data-aos="fade-up"] {
+    transform: translate3d(0, 50px, 0) !important;
+  }
+
+  body [data-aos="fade-down"] {
+    transform: translate3d(0, -50px, 0) !important;
+  }
+
+  body [data-aos="fade-left"] {
+    transform: translate3d(50px, 0, 0) !important;
+  }
+
+  body [data-aos="fade-right"] {
+    transform: translate3d(-50px, 0, 0) !important;
+  }
+
+  body [data-aos].aos-animate {
+    transform: translate3d(0, 0, 0) !important;
+  }
+
   @keyframes marquee {
     0% {
       transform: translateX(0%);
