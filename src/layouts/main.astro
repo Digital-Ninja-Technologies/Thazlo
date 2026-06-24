@@ -55,3 +55,36 @@ const { title, description, image } = Astro.props
     <Footer />
   </body>
 </html>
+
+<script>
+  const setupScrollAnimations = () => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target
+
+            const animationClasses =
+              el.getAttribute("data-animate")?.split(" ") || []
+
+            el.classList.remove("opacity-0")
+
+            if (animationClasses.length) {
+              el.classList.add(...animationClasses)
+            }
+
+            observer.unobserve(el)
+          }
+        })
+      },
+      { threshold: 0.15 }
+    )
+
+    const animatedElements = document.querySelectorAll("[data-animate]")
+    animatedElements.forEach((el) => observer.observe(el))
+  }
+
+  setupScrollAnimations()
+
+  document.addEventListener("astro:after-swap", setupScrollAnimations)
+</script>
