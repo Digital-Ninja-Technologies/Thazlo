@@ -13,5 +13,5 @@ export default defineConfig({
   },
   integrations: [react(), sitemap()],
 
-  site: "https://thazlo.com.ng",
+  site: "https://hazlo.it.com",
 })

@@ -4,6 +4,7 @@ import { Image } from "astro:assets"
 import WhatsAppIcon from "@/assets/icon/whatsapp.svg"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "../ui/button"
+import { siteConfig } from "@/config/site"
 
 const features = [
   {
@@ -49,7 +50,7 @@ const features = [
       data-aos-delay="100"
     >
       <a
-        href="https://wa.me/YOUR_PHONE_NUMBER"
+        href={siteConfig.socials.whatsapp}
         target="_blank"
         rel="noopener noreferrer"
         class={cn(
