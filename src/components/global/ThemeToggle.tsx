@@ -1,94 +1,32 @@
 import * as React from "react";
-import { Laptop, Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type Theme = "light" | "dark" | "system";
-
-const getInitialTheme = (): Theme => {
-  if (typeof window === "undefined") return "system";
-  const stored = localStorage.getItem("theme");
-  if (stored === "light" || stored === "dark") return stored;
-  return "system";
-};
-
 export function ThemeToggle() {
-  const [theme, setTheme] = React.useState<Theme>(getInitialTheme);
+  const [theme, setTheme] = React.useState<"light" | "dark">(() => {
+    if (typeof document !== "undefined") {
+      return document.documentElement.classList.contains("dark") ? "dark" : "light";
+    }
+    return "light";
+  });
 
-  React.useEffect(() => {
-    const root = document.documentElement;
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-    const applyTheme = (targetTheme: Theme) => {
-      if (targetTheme === "system") {
-        const systemTheme = mediaQuery.matches ? "dark" : "light";
-        root.classList.toggle("dark", systemTheme === "dark");
-        localStorage.removeItem("theme");
-      } else {
-        root.classList.toggle("dark", targetTheme === "dark");
-        localStorage.setItem("theme", targetTheme);
-      }
-    };
-
-    applyTheme(theme);
-
-    const handleSystemChange = () => {
-      if (theme === "system") applyTheme("system");
-    };
-
-    mediaQuery.addEventListener("change", handleSystemChange);
-    return () => mediaQuery.removeEventListener("change", handleSystemChange);
-  }, [theme]);
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    localStorage.setItem("theme", newTheme);
+  };
 
   return (
-    <div
-      role="radiogroup"
-      aria-label="Theme selection"
-      className="inline-flex h-9 items-center rounded-full border border-white/20 bg-white/10 p-1"
+    <button
+      onClick={toggleTheme}
+      aria-label="Toggle theme"
+      className={cn(
+        "fixed bottom-6 right-6 z-60 flex size-12 items-center justify-center rounded-full border border-border bg-background shadow-lg transition-transform hover:scale-105 active:scale-95 md:bottom-8 md:right-8"
+      )}
     >
-      <button
-        role="radio"
-        aria-checked={theme === "light"}
-        aria-label="Light mode"
-        onClick={() => setTheme("light")}
-        className={cn(
-          "flex size-7 items-center justify-center rounded-full transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white",
-          theme === "light"
-            ? "bg-white text-primary shadow-sm"
-            : "text-white/60 hover:text-white"
-        )}
-      >
-        <Sun className="size-4" />
-      </button>
-
-      <button
-        role="radio"
-        aria-checked={theme === "system"}
-        aria-label="System mode"
-        onClick={() => setTheme("system")}
-        className={cn(
-          "flex size-7 items-center justify-center rounded-full transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white",
-          theme === "system"
-            ? "bg-white text-primary shadow-sm"
-            : "text-white/60 hover:text-white"
-        )}
-      >
-        <Laptop className="size-4" />
-      </button>
-
-      <button
-        role="radio"
-        aria-checked={theme === "dark"}
-        aria-label="Dark mode"
-        onClick={() => setTheme("dark")}
-        className={cn(
-          "flex size-7 items-center justify-center rounded-full transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white",
-          theme === "dark"
-            ? "bg-white text-primary shadow-sm"
-            : "text-white/60 hover:text-white"
-        )}
-      >
-        <Moon className="size-4" />
-      </button>
-    </div>
+      <Sun className="size-5 text-primary rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute size-5 text-primary rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+    </button>
   );
 }

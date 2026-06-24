@@ -21,43 +21,47 @@ const faqs = [
 ]
 ---
 
-<section class="section-wrapper" id="faqs">
-  <div class="mx-auto mb-16 flex max-w-3xl flex-col items-center text-center">
-    <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
-      Frequently Asked Questions
-    </h2>
-  </div>
+<div class="bg-muted/40 dark:bg-muted/10">
+  <section class="section-wrapper" id="faqs">
+    <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+        Frequently Asked Questions
+      </h2>
+    </div>
 
-  <div class="mx-auto max-w-prose space-y-4">
-    {
-      faqs.map((faq, index) => (
-        <div
-          class="faq-item group flex flex-col border-b border-border/40 last:border-0"
-          data-state={index === 0 ? "open" : "closed"}
-          data-aos="fade-up"
-          data-aos-delay={(index + 1) * 150}
-        >
-          <button
-            type="button"
-            class="faq-button flex w-full items-center justify-between py-6 text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
-            aria-expanded={index === 0 ? "true" : "false"}
+    <div class="section-body mx-auto max-w-prose space-y-4">
+      {
+        faqs.map((faq, index) => (
+          <div
+            class="faq-item group flex flex-col border-b border-border/40 last:border-0"
+            data-state={index === 0 ? "open" : "closed"}
+            data-aos="fade-up"
+            data-aos-delay={(index + 1) * 150}
           >
-            <span class="text-xl font-semibold font-heading">{faq.question}</span>
-            <ChevronDown class="size-4 shrink-0 transition-transform duration-300 group-data-[state=open]:rotate-180" />
-          </button>
+            <button
+              type="button"
+              class="faq-button flex w-full items-center justify-between py-6 text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
+              aria-expanded={index === 0 ? "true" : "false"}
+            >
+              <span class="font-heading text-xl font-semibold">
+                {faq.question}
+              </span>
+              <ChevronDown class="size-4 shrink-0 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+            </button>
 
-          <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-data-[state=open]:grid-rows-[1fr]">
-            <div class="overflow-hidden">
-              <p class="pb-8 text-lg leading-relaxed text-muted-foreground">
-                {faq.answer}
-              </p>
+            <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-data-[state=open]:grid-rows-[1fr]">
+              <div class="overflow-hidden">
+                <p class="pb-8 text-lg leading-relaxed text-muted-foreground">
+                  {faq.answer}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      ))
-    }
-  </div>
-</section>
+        ))
+      }
+    </div>
+  </section>
+</div>
 
 <script>
   const initAccordions = () => {

@@ -1,15 +1,8 @@
 ---
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { ChevronRight } from "@lucide/astro"
 ---
 
-<a
-  href="/contact"
-  class={cn(buttonVariants({ variant: "outline", size: "lg" }), "border")}
->
-  Contact us
-</a>
 <a
   href="/download"
   class={cn(
@@ -20,6 +13,5 @@ import { ChevronRight } from "@lucide/astro"
     "shadow-lg shadow-primary/20"
   )}
 >
-  Get the App
-  <ChevronRight />
+  Download App
 </a>

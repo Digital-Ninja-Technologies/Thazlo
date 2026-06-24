@@ -30,38 +30,54 @@ const valuesData = [
 ]
 ---
 
-<section class="section-wrapper my-16 rounded-4xl bg-muted/30 dark:bg-muted/10">
-  <SectionHeader label="Our Values">
-    What drives everything we do
-  </SectionHeader>
+<div class="section-bg">
+  <section class="section-wrapper">
+    <div
+      class="mx-auto flex max-w-4xl flex-col items-center md:items-start space-y-4 text-center"
+    >
+      <p
+        data-aos="fade-up"
+        data-aos-delay="100"
+        class="text-lg font-medium tracking-wide text-primary uppercase"
+      >
+        Our Values
+      </p>
 
-  <div class="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-    {
-      valuesData.map((value, index) => (
-        <div
-          class="flex h-full flex-col rounded-2xl border border-border/50 bg-card p-4 shadow-sm md:p-6 dark:bg-muted/30"
-          data-aos="fade-up"
-          data-aos-delay={(index + 1) * 150}
-        >
-          {/* Icon & Label */}
-          <div class="flex items-center gap-2">
-            <ShieldCheck class="size-8 fill-primary stroke-[1.5] text-background" />
-            <span class="text-sm font-semibold tracking-wide text-primary uppercase">
-              {value.label}
-            </span>
+      <h2 data-aos="fade-up" data-aos-delay="200" class="section-title">
+        What drives everything we do
+      </h2>
+    </div>
+
+    <div
+      class="section-body grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+    >
+      {
+        valuesData.map((value, index) => (
+          <div
+            class="flex h-full flex-col rounded-2xl border border-border/50 bg-card p-4 shadow-sm md:p-6 dark:bg-muted/30"
+            data-aos="fade-up"
+            data-aos-delay={(index + 1) * 150}
+          >
+            {/* Icon & Label */}
+            <div class="flex items-center gap-2">
+              <ShieldCheck class="size-8 fill-primary stroke-[1.5] text-background" />
+              <span class="text-sm font-semibold tracking-wide text-primary uppercase">
+                {value.label}
+              </span>
+            </div>
+
+            {/* Title */}
+            <h3 class="mt-4 font-heading text-xl font-bold tracking-tight text-foreground">
+              {value.title}
+            </h3>
+
+            {/* Description */}
+            <p class="mt-3 text-base leading-relaxed text-muted-foreground">
+              {value.description}
+            </p>
           </div>
-
-          {/* Title */}
-          <h3 class="mt-4 font-heading text-xl font-bold tracking-tight text-foreground">
-            {value.title}
-          </h3>
-
-          {/* Description */}
-          <p class="mt-3 text-base leading-relaxed text-muted-foreground">
-            {value.description}
-          </p>
-        </div>
-      ))
-    }
-  </div>
-</section>
+        ))
+      }
+    </div>
+  </section>
+</div>

@@ -29,7 +29,7 @@ const {
     "flex h-full flex-col rounded-3xl border p-8 md:p-10",
     isHighlighted
       ? "border-primary bg-primary text-white md:rotate-0"
-      : "border-border bg-secondary text-foreground md:-rotate-0 dark:bg-card",
+      : "border-border bg-muted/50 text-foreground md:-rotate-0 dark:bg-muted/10",
   ]}
 >
   <div class="mb-4">
@@ -41,7 +41,7 @@ const {
     >
       {label}
     </span>
-    <h3 class="mt-2 text-3xl font-bold font-heading tracking-tight">
+    <h3 class="mt-2 font-heading text-3xl font-bold tracking-tight">
       {title}
     </h3>
   </div>

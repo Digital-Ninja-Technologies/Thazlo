@@ -9,6 +9,7 @@ export const routes = {
     fixRepair: "/#services"
   },
   about: "/about",
+  howItWorks: "/#how-it-works",
   contact: "/contact",
   careers: "/careers",
   terms: "/terms",
@@ -20,11 +21,10 @@ export const routes = {
 const mainNav = [
   { name: "Home", href: routes.home },
   { name: "Services", href: routes.services.index },
+  {name: "How It Works", href: routes.howItWorks},
   { name: "About us", href: routes.about },
-  { name: "FAQs", href: routes.faq },
+  { name: "Contact", href: routes.contact },
   { name: "911", href: routes["911"] },
-
-  // { name: "Careers", href: routes.careers }
 ];
 
 const serviceRoutes = [
@@ -39,7 +39,7 @@ export const siteConfig = {
   description:
     "An all-in-one app for everyday home services. Order cooking gas, schedule laundry pickups, and book reliable maintenance workers easily.",
 
-  url: "https://thazlo.com.ng", // TODO: update to the actual site domain
+  url: "https://thazlo.com.ng", // TODO: update to the actual site domain (everywhere)
 
   contact: {
     location: { icon: MapPin, label: "Address", value: "Royal View Estate \n Lagos, Nigeria" },

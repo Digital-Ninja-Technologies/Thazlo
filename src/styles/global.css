@@ -166,7 +166,15 @@
 
 @layer components {
   .section-wrapper {
-    @apply mx-auto w-full max-w-7xl px-4 py-8 md:px-8 md:py-16 lg:px-16;
+    @apply mx-auto w-full max-w-7xl px-4 py-24 md:px-8 lg:px-16;
+  }
+
+  .section-body {
+    @apply mt-12 md:mt-16;
+  }
+
+  .section-bg {
+    @apply bg-muted/50 dark:bg-muted/10
   }
 
   .section-title {
@@ -200,7 +208,7 @@
   }
 
   .animate-marquee {
-    animation: marquee 30s linear infinite;
+    animation: marquee 40s linear infinite;
   }
 
   .animate-marquee:hover {

@@ -1,12 +1,14 @@
 ---
 import Layout from "@/layouts/main.astro"
-import { siteConfig } from "@/config/site"
 import Download from "@/components/download/Download.astro"
 import Features from "@/components/download/Features.astro"
 import SocialProof from "@/components/download/SocialProof.astro"
 ---
 
-<Layout title="Download Our App - THAZLO" description={siteConfig.description}>
+<Layout
+  title="Download the Thazlo App for iOS and Android"
+  description="Get the free Thazlo app for your phone. Book cooking gas refills, schedule laundry pickups, and track your orders in real time."
+>
   <Download />
   <Features />
   <SocialProof />

@@ -1,41 +1,91 @@
 ---
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/site"
+
 interface Props {
-  title: string;
-  description?: string;
-  image?: string;
-  type?: string;
+  title: string
+  description?: string
+  image?: string
+  type?: string
 }
 
 const {
   title,
   description = siteConfig.description,
-  image = "/logo.png",
+  image = "/og-image.jpg",
   type = "website",
-} = Astro.props;
+} = Astro.props
 
-const canonicalURL = new URL(
-  Astro.url.pathname,
-  Astro.site || siteConfig.url
-);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteConfig.url)
+const socialImageURL = new URL(image, canonicalURL)
+
+// JSON-LD Schema Markup
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${canonicalURL}#organization`,
+      name: "Thazlo Innovations Limited",
+      url: canonicalURL,
+      logo: new URL("/logo.png", canonicalURL),
+      description: description,
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        availableLanguage: ["English"],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${canonicalURL}#website`,
+      url: canonicalURL,
+      name: "Thazlo",
+      description: description,
+      publisher: {
+        "@id": `${canonicalURL}#organization`,
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "Thazlo App",
+      operatingSystem: "Android, iOS",
+      applicationCategory: "LifestyleApplication",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "NGN",
+      },
+    },
+  ],
+}
 ---
 
+<!-- Global Metadata -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#FF6602" />
 
+<!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, canonicalURL)} />
+<meta property="og:image" content={socialImageURL} />
+<meta property="og:site_name" content="Thazlo" />
 
+<!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={canonicalURL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, canonicalURL)} />
+<meta property="twitter:image" content={socialImageURL} />
 
-<meta name="robots" content="index, follow" />
-<meta name="theme-color" content="#FF6602" />
+<!-- Schema.org JSON-LD -->
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+/>

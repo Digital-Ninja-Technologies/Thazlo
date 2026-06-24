@@ -23,30 +23,32 @@ const howItWorksData = [
 ]
 ---
 
-<section class="section-wrapper bg-secondary dark:bg-card" id="how-it-works">
-  <SectionHeader label="How it works">
-    Order in minutes, <br class="hidden md:block" /> delivered with care
-  </SectionHeader>
+<div class="section-bg">
+  <section class="section-wrapper" id="how-it-works">
+    <SectionHeader label="How it works">
+      Order in minutes, <br class="hidden md:block" /> delivered with care
+    </SectionHeader>
 
-  <div
-    class="mt-20 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8"
-  >
-    {
-      howItWorksData.map((step, index) => (
-        <div
-          class="flex flex-col items-center rounded-3xl bg-background/70 px-4 py-6 text-center dark:bg-background/30"
-          data-aos="fade-up"
-          data-aos-delay={index * 150}
-        >
-          <div class="flex size-16 items-center justify-center rounded-full bg-primary text-2xl font-bold text-white shadow-sm">
-            {index + 1}
+    <div
+      class="section-body grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8"
+    >
+      {
+        howItWorksData.map((step, index) => (
+          <div
+            class="flex flex-col items-center py-6 text-center"
+            data-aos="fade-up"
+            data-aos-delay={index * 150}
+          >
+            <div class="flex size-16 items-center justify-center rounded-full bg-primary text-2xl font-bold text-white shadow-sm">
+              {index + 1}
+            </div>
+            <h3 class="mt-6 font-heading text-xl font-bold">{step.title}</h3>
+            <p class="mt-3 max-w-100 leading-relaxed text-muted-foreground">
+              {step.description}
+            </p>
           </div>
-          <h3 class="mt-6 text-xl font-bold font-heading">{step.title}</h3>
-          <p class="mt-3 max-w-100 leading-relaxed text-muted-foreground">
-            {step.description}
-          </p>
-        </div>
-      ))
-    }
-  </div>
-</section>
+        ))
+      }
+    </div>
+  </section>
+</div>
