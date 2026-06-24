@@ -11,11 +11,21 @@ const {
 ---
 
 <div class="flex flex-col items-center justify-center space-y-8">
-  <p class="text-lg font-medium tracking-widest text-foreground uppercase">
+  <p
+    class="text-lg font-medium tracking-widest text-foreground uppercase"
+    data-aos="fade-right"
+    data-aos-delay="380"
+  >
     OR
   </p>
 
-  <h3 class="text-2xl font-medium text-foreground">Scan to download app</h3>
+  <h3
+    class="text-2xl font-medium text-foreground"
+    data-aos="fade-up"
+    data-aos-delay="380"
+  >
+    Scan to download app
+  </h3>
 
   <div
     class="flex items-center justify-center rounded-[2rem] p-4 transition-transform duration-300 hover:scale-105"
@@ -28,11 +38,15 @@ const {
       data-apple={appleQr}
       data-google={googleQr}
       loading="lazy"
+      data-aos="zoom-in"
+      data-aos-delay="200"
     />
   </div>
 
   <div
     class="inline-flex items-center rounded-full border border-border/50 bg-background p-1.5 shadow-sm"
+    data-aos="fade-up"
+    data-aos-delay="280"
   >
     <button
       id="qr-btn-apple"

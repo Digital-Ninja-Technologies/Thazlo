@@ -35,7 +35,7 @@ export const siteConfig = {
   url: "https://thazlo.com.ng", // TODO: update to the actual site domain
 
   contact: {
-    location: { icon: MapPin, label: "Address", value: "Royal View Estate Lagos, Nigeria" },
+    location: { icon: MapPin, label: "Address", value: "Royal View Estate \n Lagos, Nigeria" },
     phone: { icon: Phone, label: "Phone Number", value: "+234 453 47814" },
     emails: [
       { icon: Mail, label: "Email Address", value: "hazlongg@gmail.com" },
