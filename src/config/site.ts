@@ -35,12 +35,16 @@ const serviceRoutes = [
 
 export const siteConfig = {
   name: "THAZLO",
-
   description:
     "An all-in-one app for everyday home services. Order cooking gas, schedule laundry pickups, and book reliable maintenance workers easily.",
+  url: "https://hazlo.it.com",
+  
+  appLink: {
+    apple: "https://apps.apple.com/us/app/thazlo-laundry-gas/id6754158149",
+    google: "https://play.google.com/store/apps/details?id=com.hazlo.thazlo"
+  },
 
-  url: "https://thazlo.com.ng", // TODO: update to the actual site domain (everywhere)
-
+  // Contact Details
   contact: {
     location: { icon: MapPin, label: "Address", value: "Royal View Estate \n Lagos, Nigeria" },
     phone: { icon: Phone, label: "Phone Number", value: "+234 453 47814" },
@@ -49,14 +53,16 @@ export const siteConfig = {
     ],
   },
 
+  // Socials
   socials: {
     facebook: "#", // TODO: add social links
-    instagram: "#",
+    instagram: "https://www.instagram.com/t.hazlo?igsh=MXZnb2ZyN2NoZXp0bA==",
+    whatsapp: "https://wa.me/2347045347814",
     linkedin: "#",
   },
 
+  // Navigations
   mainNav,
-
   footerNav: [
     {
       title: "Company",

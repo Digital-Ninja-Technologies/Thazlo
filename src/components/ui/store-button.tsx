@@ -1,8 +1,9 @@
 import * as React from "react"
-import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { siteConfig } from "@/config/site"
+import { buttonVariants } from "@/components/ui/button"
 
-interface StoreButtonProps extends React.ComponentProps<typeof Button> {
+interface StoreButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   platform: "apple" | "google"
   storeVariant?: "dark" | "outline"
 }
@@ -16,6 +17,8 @@ export function StoreButton({
   const isApple = platform === "apple"
   const topText = isApple ? "Download on the" : "GET IT ON"
   const bottomText = isApple ? "App Store" : "Google Play"
+  const link = isApple ? siteConfig.appLink.apple : siteConfig.appLink.google
+
 
   const baseClasses = "h-[52px] rounded-xl px-4 gap-3 py-2 flex items-center"
 
@@ -24,25 +27,28 @@ export function StoreButton({
     outline: "bg-background text-foreground dark:hover:text-white hover:text-background border-2 border-primary hover:bg-primary/5",
   }
 
+
+
   return (
-    <Button
-      variant="default"
-      className={cn(baseClasses, variantClasses[storeVariant], className)}
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cn(buttonVariants(), baseClasses, variantClasses[storeVariant], className)}
       {...props}
     >
       {isApple ? <AppleIcon /> : <GooglePlayIcon />}
       <div className="flex flex-col items-start justify-center text-left">
-        <span className="text-[10px] font-medium leading-none mb-0.5 opacity-80 uppercase tracking-wide">
+        <span className="mb-0.5 text-[10px] font-medium uppercase leading-none tracking-wide opacity-80">
           {topText}
         </span>
         <span className="text-[15px] font-semibold leading-none">
           {bottomText}
         </span>
       </div>
-    </Button>
+    </a>
   )
 }
-
 
 function AppleIcon({ className = "h-7 w-7 shrink-0 fill-current" }) {
   return (
@@ -57,7 +63,6 @@ function AppleIcon({ className = "h-7 w-7 shrink-0 fill-current" }) {
     </svg>
   )
 }
-
 
 function GooglePlayIcon({ className = "h-7 w-7 shrink-0" }) {
   return (
