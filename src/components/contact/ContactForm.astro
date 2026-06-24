@@ -20,7 +20,13 @@ import { Textarea } from "../ui/textarea"
     out the form below and our team will get back to you as soon as possible.
   </p>
 
-  <form id="contact-form" class="flex flex-col gap-6" novalidate>
+  <form
+    id="contact-form"
+    action="https://formspree.io/f/xaqgqvgl"
+    method="POST"
+    class="flex flex-col gap-6"
+    novalidate
+  >
     <div class="space-y-3">
       <Label htmlFor="name">Full Name</Label>
       <Input
@@ -113,7 +119,9 @@ import { Textarea } from "../ui/textarea"
     const emailInput = document.getElementById("email") as HTMLInputElement
     const gmailChip = document.getElementById("gmail-chip") as HTMLButtonElement
 
-    if (!form) return
+    if (!form || form.dataset.initialized === "true") return
+
+    form.dataset.initialized = "true"
 
     if (gmailChip && emailInput) {
       gmailChip.addEventListener("click", () => {
@@ -144,7 +152,7 @@ import { Textarea } from "../ui/textarea"
       try {
         const formData = new FormData(form)
 
-        const endpoint = "https://formspree.io/f/xaqgqvgl"
+        const endpoint = form.action
 
         const response = await fetch(endpoint, {
           method: "POST",
@@ -178,6 +186,8 @@ import { Textarea } from "../ui/textarea"
       }
     })
   }
+
+  setupContactForm()
 
   document.addEventListener("astro:page-load", setupContactForm)
 </script>
