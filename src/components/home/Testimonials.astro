@@ -116,6 +116,7 @@ const sliderItems = [...testimonials, ...testimonials]
 
 <script>
   import EmblaCarousel from "embla-carousel"
+  import Autoplay from "embla-carousel-autoplay"
 
   const setupTestimonialSlider = () => {
     const viewport = document.getElementById("testimonial-viewport")
@@ -128,15 +129,31 @@ const sliderItems = [...testimonials, ...testimonials]
     if (viewport.dataset.initialized === "true") return
     viewport.dataset.initialized = "true"
 
-    // Initialize Embla
-    const emblaApi = EmblaCarousel(viewport, {
-      loop: true,
-      align: "center",
-      skipSnaps: false,
+    const emblaApi = EmblaCarousel(
+      viewport,
+      {
+        loop: true,
+        align: "center",
+        skipSnaps: false,
+      },
+      [
+        Autoplay({
+          delay: 3500, // Slides every 3.5 seconds
+          stopOnInteraction: false, // Keeps playing after they manually scroll
+          stopOnMouseEnter: true, // Pauses if they hover over a card to read it
+        }),
+      ]
+    )
+
+    btnPrev.addEventListener("click", () => {
+      emblaApi.scrollPrev()
+      emblaApi.plugins().autoplay.reset() // Reset timer on click so it doesn't jump immediately
     })
 
-    btnPrev.addEventListener("click", () => emblaApi.scrollPrev())
-    btnNext.addEventListener("click", () => emblaApi.scrollNext())
+    btnNext.addEventListener("click", () => {
+      emblaApi.scrollNext()
+      emblaApi.plugins().autoplay.reset()
+    })
   }
 
   setupTestimonialSlider()
