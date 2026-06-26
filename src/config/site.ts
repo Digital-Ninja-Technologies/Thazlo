@@ -46,7 +46,7 @@ export const siteConfig = {
 
   // Contact Details
   contact: {
-    location: { icon: MapPin, label: "Address", value: "Royal View Estate \n Lagos, Nigeria" },
+    location: { icon: MapPin, label: "Address", value: "Royal View Estate \n Lagos, Nigeria", link: "https://www.google.com/maps/search/Royal+View+Estate+Lagos,+Nigeria/@6.45189,3.5515181,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDYyMy4wIKXMDSoASAFQAw%3D%3D" },
     phone: { icon: Phone, label: "Phone Number", value: "+234 453 47814" },
     emails: [
       { icon: Mail, label: "Email Address", value: "hazlongg@gmail.com" },
