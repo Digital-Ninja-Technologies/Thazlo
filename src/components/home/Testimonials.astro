@@ -1,6 +1,7 @@
 ---
 import SectionHeader from "@/components/ui/section-header.astro"
-import { Star } from "@lucide/astro"
+import { Star, Quote, ArrowLeft, ArrowRight } from "@lucide/astro"
+import { Button } from "../ui/button"
 
 const testimonials = [
   {
@@ -23,7 +24,7 @@ const testimonials = [
   },
 ]
 
-const marqueeItems = [...testimonials, ...testimonials]
+const sliderItems = [...testimonials, ...testimonials]
 ---
 
 <section class="section-wrapper relative overflow-hidden">
@@ -31,55 +32,113 @@ const marqueeItems = [...testimonials, ...testimonials]
     What customers are saying
   </SectionHeader>
 
-  <div class="section-body">
+  <div class="section-body relative mt-16">
+    {/* Fade Masks for Desktop */}
     <div
-      class="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-linear-to-r from-background to-transparent md:w-32"
+      class="pointer-events-none absolute inset-y-0 left-0 z-20 hidden w-16 bg-linear-to-r from-background to-transparent md:block lg:w-32"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute inset-y-0 right-0 z-20 hidden w-16 bg-linear-to-l from-background to-transparent md:block lg:w-32"
     >
     </div>
 
-    <div
-      class="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-linear-to-l from-background to-transparent md:w-32"
-    >
-    </div>
+    {/* Embla Viewport */}
+    <div id="testimonial-viewport" class="overflow-hidden py-4">
+      {/* Embla Container */}
+      <div class="flex touch-pan-y">
+        {
+          sliderItems.map((review) => (
+            <div class="group relative z-10 mx-3 flex w-[320px] shrink-0 snap-center flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card p-8 text-foreground shadow-sm transition-colors duration-200 hover:border-primary hover:bg-primary hover:text-white md:w-100 dark:bg-muted/30 dark:hover:bg-primary">
+              {/* Quote Watermark Underlay */}
+              <Quote
+                class="absolute top-0 right-0 z-0 size-32 -rotate-6 fill-current text-foreground/5 transition-colors duration-300 group-hover:text-white/10 dark:text-white/5"
+                stroke="none"
+              />
 
-    {/* scrolling track */}
-    <div
-      class="animate-marquee flex w-max min-w-full shrink-0 items-stretch gap-6 py-4"
-    >
-      {
-        marqueeItems.map((review) => (
-          <div class="group flex w-[320px] shrink-0 flex-col justify-between rounded-2xl border border-border bg-card p-8 text-foreground shadow-sm transition-colors duration-300 hover:border-primary hover:bg-primary hover:text-white md:w-100 dark:bg-muted/30 dark:hover:bg-primary">
-            <div>
-              {/* star rating */}
-              <div class="mb-6 flex gap-1">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <Star
-                    class:list={[
-                      "size-5 transition-colors duration-300",
-                      i < review.rating
-                        ? "fill-primary text-primary group-hover:fill-white group-hover:text-white"
-                        : "fill-transparent text-muted-foreground group-hover:text-white/50",
-                    ]}
-                  />
-                ))}
+              <div class="relative z-10 mt-12">
+                {/* star rating */}
+                <div class="mb-6 flex gap-1">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <Star
+                      class:list={[
+                        "size-5 transition-colors duration-300",
+                        i < review.rating
+                          ? "fill-primary text-primary group-hover:fill-white group-hover:text-white"
+                          : "fill-transparent text-muted-foreground group-hover:text-white/50",
+                      ]}
+                    />
+                  ))}
+                </div>
+
+                {/* review */}
+                <p class="mb-8 text-lg leading-relaxed font-medium text-foreground/90 italic transition-colors duration-300 group-hover:text-white/95">
+                  "{review.text}"
+                </p>
               </div>
 
-              {/* review */}
-              <p class="mb-8 text-lg leading-relaxed font-medium text-foreground/90 italic transition-colors duration-300 group-hover:text-white/95">
-                "{review.text}"
-              </p>
+              {/* author details */}
+              <div class="relative z-10 mt-auto flex flex-col items-end pt-4 text-right">
+                <p class="font-heading font-bold">{review.author}</p>
+                <p class="mt-1 text-sm text-muted-foreground transition-colors duration-300 group-hover:text-white/80">
+                  {review.location}
+                </p>
+              </div>
             </div>
+          ))
+        }
+      </div>
+    </div>
 
-            {/* author details */}
-            <div class="mt-auto flex flex-col items-end pt-4 text-right">
-              <p class="font-heading font-bold">{review.author}</p>
-              <p class="mt-1 text-sm text-muted-foreground transition-colors duration-300 group-hover:text-white/80">
-                {review.location}
-              </p>
-            </div>
-          </div>
-        ))
-      }
+    {/* Slider Controls */}
+    <div class="mt-10 flex items-center justify-center gap-4">
+      <Button
+        id="btn-prev"
+        variant="outline"
+        className="rounded-full border border-primary bg-transparent text-primary ring ring-primary/5"
+        size="icon-lg"
+        aria-label="Previous testimonial"
+      >
+        <ArrowLeft />
+      </Button>
+      <Button
+        id="btn-next"
+        variant="outline"
+        className="rounded-full border border-primary bg-transparent text-primary ring ring-primary/5"
+        size="icon-lg"
+        aria-label="Next testimonial"
+      >
+        <ArrowRight />
+      </Button>
     </div>
   </div>
 </section>
+
+<script>
+  import EmblaCarousel from "embla-carousel"
+
+  const setupTestimonialSlider = () => {
+    const viewport = document.getElementById("testimonial-viewport")
+    const btnPrev = document.getElementById("btn-prev")
+    const btnNext = document.getElementById("btn-next")
+
+    if (!viewport || !btnPrev || !btnNext) return
+
+    // Prevent re-initialization
+    if (viewport.dataset.initialized === "true") return
+    viewport.dataset.initialized = "true"
+
+    // Initialize Embla
+    const emblaApi = EmblaCarousel(viewport, {
+      loop: true,
+      align: "center",
+      skipSnaps: false,
+    })
+
+    btnPrev.addEventListener("click", () => emblaApi.scrollPrev())
+    btnNext.addEventListener("click", () => emblaApi.scrollNext())
+  }
+
+  setupTestimonialSlider()
+  document.addEventListener("astro:page-load", setupTestimonialSlider)
+</script>
