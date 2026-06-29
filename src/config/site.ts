@@ -12,8 +12,10 @@ export const routes = {
   howItWorks: "/#how-it-works",
   contact: "/contact",
   careers: "/careers",
-  terms: "/terms",
-  privacy: "/privacy",
+  legal: {
+    terms: "/legal/terms",
+    privacy: "/legal/privacy"
+  },
   faq: "/#faqs",
   "911": "/911"
 } as const;
@@ -38,7 +40,7 @@ export const siteConfig = {
   description:
     "An all-in-one app for everyday home services. Order cooking gas, schedule laundry pickups, and book reliable maintenance workers easily.",
   url: "https://hazlo.it.com",
-  
+
   appLink: {
     apple: "https://apps.apple.com/us/app/thazlo-laundry-gas/id6754158149",
     google: "https://play.google.com/store/apps/details?id=com.hazlo.thazlo"
@@ -58,6 +60,7 @@ export const siteConfig = {
     facebook: "#", // TODO: add social links
     instagram: "https://www.instagram.com/t.hazlo?igsh=MXZnb2ZyN2NoZXp0bA==",
     whatsapp: "https://wa.me/2347045347814",
+    x: "https://x.com/thazlong?s=11",
     linkedin: "#",
   },
 
