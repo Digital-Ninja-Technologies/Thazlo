@@ -1,0 +1,102 @@
+---
+import BaseLayout from "./main.astro"
+import type { MarkdownHeading } from "astro"
+
+interface Props {
+  title: string
+  description: string
+  lastUpdated: Date
+  headings: MarkdownHeading[]
+}
+
+const { title, description, lastUpdated, headings } = Astro.props
+
+const formattedDate = lastUpdated.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+})
+
+const toc = headings.filter((heading) => heading.depth === 2)
+---
+
+<BaseLayout title={`${title} | Thazlo`} className="overflow-clip">
+  <div class="section-wrapper pt-36 md:pt-40">
+    {/* Header */}
+    <div class="mb-12 max-w-3xl">
+      <h1
+        class="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
+      >
+        {title}
+      </h1>
+      <p class="mt-4 text-lg text-muted-foreground">
+        {description}
+      </p>
+      <p class="mt-4 text-sm font-medium text-muted-foreground/70">
+        Last Updated: {formattedDate}
+      </p>
+    </div>
+
+    <div
+      class="relative flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16"
+    >
+      <aside
+        class="sticky top-24 z-10 hidden w-64 shrink-0 self-start lg:block"
+      >
+        <nav class="flex flex-col gap-1 border-l-2 border-border pl-4">
+          <span
+            class="mb-2 text-xs font-bold tracking-wider text-muted-foreground uppercase"
+          >
+            On this page
+          </span>
+          {
+            toc.map((heading) => (
+              <a
+                href={`#${heading.slug}`}
+                class="toc-link py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary data-[active=true]:font-bold data-[active=true]:text-primary"
+              >
+                {heading.text}
+              </a>
+            ))
+          }
+        </nav>
+      </aside>
+
+      {/* Main Content Area */}
+      <article
+        class="prose prose-lg max-w-none flex-1 prose-slate md:max-w-3xl dark:prose-invert prose-headings:scroll-mt-28 prose-headings:font-heading prose-headings:font-bold prose-headings:tracking-tight md:prose-headings:scroll-mt-32 prose-p:text-muted-foreground prose-a:font-semibold prose-a:text-primary prose-a:no-underline prose-a:decoration-primary/30 hover:prose-a:underline hover:prose-a:decoration-primary prose-li:text-muted-foreground prose-table:overflow-hidden prose-table:rounded-xl prose-table:border prose-table:border-border prose-table:shadow-sm prose-th:bg-muted/50 prose-th:px-3 prose-th:py-4 prose-th:text-left prose-th:font-heading prose-th:text-foreground md:prose-th:px-6 prose-td:border-t prose-td:border-border prose-td:py-4 prose-td:align-middle md:prose-td:px-6 prose-img:rounded-xl"
+      >
+        <slot />
+      </article>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // remove active state from all links
+          document.querySelectorAll(".toc-link").forEach((link) => {
+            link.removeAttribute("data-active")
+          })
+          // add active state to the currently visible section
+          const activeLink = document.querySelector(
+            `.toc-link[href="#${entry.target.id}"]`
+          )
+          if (activeLink) {
+            activeLink.setAttribute("data-active", "true")
+          }
+        }
+      })
+    },
+    {
+      rootMargin: "-20% 0px -70% 0px",
+    }
+  )
+
+  document.querySelectorAll("article h2[id]").forEach((section) => {
+    observer.observe(section)
+  })
+</script>
