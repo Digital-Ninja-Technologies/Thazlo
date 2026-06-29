@@ -1,0 +1,49 @@
+---
+import Layout from "@/layouts/main.astro"
+import { House, PhoneCall } from "@lucide/astro"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+---
+
+<Layout
+  title="404: Page Not Found | Thazlo"
+  description="The page you are looking for does not exist or has been moved."
+  className="pt-36"
+>
+  <div
+    class="flex min-h-[75vh] flex-col items-center justify-center px-4 text-center"
+  >
+    <div class="space-y-2">
+      <h1
+        class="text-8xl font-bold tracking-tighter text-primary/20 md:text-9xl"
+      >
+        404
+      </h1>
+      <h2 class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        Page not found
+      </h2>
+    </div>
+
+    <p class="mt-6 max-w-lg text-lg text-pretty text-muted-foreground">
+      We can deliver your gas and handle your laundry, but we couldn't find the
+      page you requested. It might have been moved, deleted, or the URL is
+      incorrect.
+    </p>
+
+    <div
+      class="mt-10 flex w-full max-w-sm flex-col gap-4 sm:max-w-none sm:flex-row sm:justify-center"
+    >
+      <a href="/" class={cn(buttonVariants({ size: "lg" }))}>
+        <House />
+        Back to Home
+      </a>
+      <a
+        href="/contact"
+        class={cn(buttonVariants({ size: "lg", variant: "outline" }))}
+      >
+        <PhoneCall />
+        Contact Support
+      </a>
+    </div>
+  </div>
+</Layout>
