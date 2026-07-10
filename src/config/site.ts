@@ -71,6 +71,7 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/t.hazlo?igsh=MXZnb2ZyN2NoZXp0bA==",
     whatsapp: "https://wa.me/2347045347814",
     x: "https://x.com/thazlong?s=11",
+    youtube: "https://www.youtube.com/@ThazloInnovationLimited",
     linkedin: "#",
   },
 
