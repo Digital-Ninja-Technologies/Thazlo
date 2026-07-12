@@ -1,12 +1,12 @@
 ---
 title: "Privacy Policy"
-description: "How Hazlo collects, uses, and protects your personal data for gas delivery and laundry services."
+description: "How THAZLO collects, uses, and protects your personal data for gas delivery and laundry services."
 lastUpdated: 2026-06-29
 ---
 
 ## 1. Introduction
 
-At Hazlo, your privacy is a priority. This Privacy Policy explains how we collect, use, store, and safeguard the information you share with us when using our gas delivery and laundry services. We are committed to transparency and ensuring your personal data is handled securely and in compliance with standard data protection principles.
+At THAZLO, your privacy is a priority. This Privacy Policy explains how we collect, use, store, and safeguard the information you share with us when using our gas delivery and laundry services. We are committed to transparency and ensuring your personal data is handled securely and in compliance with standard data protection principles.
 
 ## 2. Information We Collect
 
