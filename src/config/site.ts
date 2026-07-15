@@ -72,7 +72,7 @@ export const siteConfig = {
 		whatsapp: "https://wa.me/2347045347814",
 		x: "https://x.com/thazlong?s=11",
 		youtube: "https://www.youtube.com/@ThazloInnovationLimited",
-		linkedin: "#",
+		linkedin: "https://www.linkedin.com/company/thazlo-innovations-limited/",
 	},
 
 	// Navigations
